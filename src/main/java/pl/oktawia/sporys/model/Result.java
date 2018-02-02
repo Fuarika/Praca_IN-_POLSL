@@ -4,7 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-
+/**
+ * Oktawia Sporyś
+ */
 //@NamedQueries({
 //    @NamedQuery( name = Result.GET_EXERCISE_ID , query = "SELECT e FROM Result e WHERE e.exerciseId like :EXERCISE_ID")})
 @Entity
