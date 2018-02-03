@@ -9,8 +9,13 @@
 
 
 <#list exercises as exercise>
-ZADANIE ${exercise.type}: ${exercise.contents} </br>
-
+ZADANIE : ${exercise.contents} </br>
+<form action="*">
+    <label>ODPOWIEDZ:</label> <input type="text" name="answer" size="50" maxlength"30" />
+    </br> <p>Odpowiedz zapisz w formacie Mxp^C (ex. 0.20x10^-3)</p>
+    </br><button type="submit">SPRAWDŹ</button>
+</form>
+<hr>
 </#list>
 
 
