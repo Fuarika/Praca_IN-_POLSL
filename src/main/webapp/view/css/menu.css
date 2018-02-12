@@ -1,0 +1,37 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 60%;
+    background-color: #24406d;
+	font: 18px Gothic L, sans-serif;
+	margin-left: 21%;
+}
+
+li a {
+    display: block;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+
+}
+
+li {
+	text-align: center;
+    border-bottom: 1px solid white;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+li a.active {
+    background-color: #24406d;
+    color: white;
+}
+
+li a:hover:not(.active) {
+    background-color: #24406d;
+    color: white;
+	text-shadow: 0px 0px 5px white;
+}

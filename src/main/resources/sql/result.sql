@@ -10,11 +10,11 @@ CREATE TABLE RESULT(
   );
 
 INSERT INTO RESULT(ID, CREATION_DATE, MODIFY_DATE, VERSION, ANSWER, EXERCISE_ID)
-VALUES (nextval('id_sequence'), current_date, current_date, 1, 'ASC', 6);
+VALUES (nextval('id_sequence'), current_date, current_date, 1, 'ASC', 1);
 
 
 INSERT INTO RESULT(ID, CREATION_DATE, MODIFY_DATE, VERSION, ANSWER, EXERCISE_ID)
-VALUES (nextval('id_sequence'), current_date, current_date, 1, '10098', 7);
+VALUES (nextval('id_sequence'), current_date, current_date, 1, '10098', 2);
 
 COMMIT ;
 
