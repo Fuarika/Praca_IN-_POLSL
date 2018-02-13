@@ -1,31 +1,30 @@
-<#import "spring.ftl" as ex />
+<!DOCTYPE html>
 <html lang="pl">
 <head>
-    <title>BLECH</title>
-    <link rel="stylesheet" href="<@ex.url 'css/styl.css'/>" type="text/css"/>
-    <link rel="stylesheet" href="<@ex.url 'css/menu.css'/>" type="text/css"/>
     <meta charset="UTF-8">
-
+    <title>BLECH</title>
+    <link rel="stylesheet" href="../css/styl.css" type="text/css"/>
+    <link rel="stylesheet" href="../css/menu.css" type="text/css"/>
 </head>
 <aside><div class="aside" style="float: center; width:80%; height: 100%; background-color: #24406d;">
-    <img class="logo" src="img/logo.png" alt="polsllogo">
+    <img class="logo" src="../img/logo.png" alt="polsllogo">
     <p></p>
     <ul>
         <li><a class="active">TEORIA</a></li>
-        <li><a href="theoryadd.html"><h2>DODAWANIE</h2></a></li>
-        <li><a href="theorysub.html" style="margin-left: -3px"><h2>ODEJMOWANIE</h2></a></li>
-        <li><a href="theorymulti.html" style="margin-left: 4px"><h2>MNOŻENIE</h2></a></li>
-        <li><a href="theorydiv.html" style="margin-left: 5px"><h2>DZIELENIE</h2></a></li>
-        <li><a href="theorynorm.html" style="margin-left: -3px"><h2>NORMALIZACJA</h2></a></li>
-        <li><a href="theorydenorm.html" style="margin-left: -13px"><h2>DENORMALIZACJA</h2></a></li>
+        <li><a href="../theory/theoryadd.html"><h2>DODAWANIE</h2></a></li>
+        <li><a href="../theory/theorysub.html" style="margin-left: -3px"><h2>ODEJMOWANIE</h2></a></li>
+        <li><a href="../theory/theorymulti.html" style="margin-left: 4px"><h2>MNOŻENIE</h2></a></li>
+        <li><a href="../theory/theorydiv.html" style="margin-left: 5px"><h2>DZIELENIE</h2></a></li>
+        <li><a href="../theory/theorynorm.html" style="margin-left: -3px"><h2>NORMALIZACJA</h2></a></li>
+        <li><a href="../theory/theorydenorm.html" style="margin-left: -13px"><h2>DENORMALIZACJA</h2></a></li>
     </ul>
     <p></p>
     <ul>
         <li><a class="active">ZADANIA</a></li>
-        <li><a href="#news"><h2>DODAWANIE</h2></a></li>
-        <li><a href="#contact" style="margin-left: -3px"><h2>ODEJMOWANIE</h2></a></li>
-        <li><a href="#about" style="margin-left: 4px"><h2>MNOŻENIE</h2></a></li>
-        <li><a href="#about" style="margin-left: 5px"><h2>DZIELENIE</h2></a></li>
+        <li><a href="/addition"><h2>DODAWANIE</h2></a></li>
+        <li><a href="/subtration" style="margin-left: -3px"><h2>ODEJMOWANIE</h2></a></li>
+        <li><a href="/multiplation" style="margin-left: 4px"><h2>MNOŻENIE</h2></a></li>
+        <li><a href="/division" style="margin-left: 5px"><h2>DZIELENIE</h2></a></li>
     </ul>
     <p></p>
     <ul>

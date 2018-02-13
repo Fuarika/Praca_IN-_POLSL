@@ -9,13 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.oktawia.sporys.enums.Types;
 import pl.oktawia.sporys.model.Exercise;
-import pl.oktawia.sporys.model.Result;
 import pl.oktawia.sporys.service.ExerciseService;
 import pl.oktawia.sporys.service.ResultService;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/")
@@ -24,6 +21,7 @@ public class ExerciseController {
     private static final String EXERCISE = "exercise";
     private static final String RESULT = "result";
     private static final String END = "end";
+    private static final String NOTHING = "index";
 
 
     @Autowired
@@ -49,15 +47,39 @@ public class ExerciseController {
     //    return RESULT;
    // }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/ex")
-    public String chooseCategory(Model model, @RequestParam(value = "exType", required = false) Types type) {
+    @RequestMapping(method = RequestMethod.GET, value = "/{type}")
+    public String chooseCategory(Model model, @RequestParam(value = "exType", required = false) Types types, @PathVariable("type") String type) {
 
-        List<Exercise> exercises = exerciseService.getAllExercisesByType(Types.ADDITION);
-        model.addAttribute( "exercises", exercises );
-        if (exercises.isEmpty()) {
-                  return "pusto";
-               }
-        return EXERCISE;
+        if (types == Types.ADDITION || type.equals("addition")){
+            List<Exercise> exercises = exerciseService.getAllExercisesByType(Types.ADDITION);
+            model.addAttribute( "exercises", exercises );
+            if (exercises.isEmpty()) {
+                return NOTHING;
+            }
+            return EXERCISE;
+        } else if(types == Types.SUBTRATION || type.equals("subtration")) {
+            List<Exercise> exercises = exerciseService.getAllExercisesByType(Types.SUBTRATION);
+            model.addAttribute("exercises", exercises);
+            if (exercises.isEmpty()) {
+                return NOTHING;
+            }
+            return EXERCISE;
+        } else if(types == Types.MULTIPLICATION || type.equals("multiplation")) {
+            List<Exercise> exercises = exerciseService.getAllExercisesByType(Types.MULTIPLICATION);
+            model.addAttribute("exercises", exercises);
+            if (exercises.isEmpty()) {
+                return NOTHING;
+            }
+            return EXERCISE;
+        } else if(types == Types.DIVISION || type.equals("division")) {
+            List<Exercise> exercises = exerciseService.getAllExercisesByType(Types.DIVISION);
+            model.addAttribute("exercises", exercises);
+            if (exercises.isEmpty()) {
+                return NOTHING;
+            }
+            return EXERCISE;
+        } else {return NOTHING;}
     }
+
 
 }
