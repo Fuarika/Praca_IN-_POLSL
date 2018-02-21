@@ -4,6 +4,6 @@ import pl.oktawia.sporys.model.Exercise;
 
 public interface ExerciseDao extends GenericDao<Exercise> {
 
-    Exercise getByType(String type);
+    Exercise getById(Integer id);
     Exercise getByCategoryId (Long categoryId);
 }

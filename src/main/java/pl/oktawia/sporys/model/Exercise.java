@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 
 @NamedQueries(value = {
-        @NamedQuery(name = Exercise.GET_BY_TYPE, query = "SELECT e FROM Exercise e WHERE e.type like :EX_TYPE")
+        @NamedQuery(name = Exercise.GET_BY_ID, query = "SELECT e FROM Exercise e WHERE e.type like :ID")
 //        @NamedQuery(name = Exercise.GET_BY_CATEGORY_ID, query="SELECT e FROM Exercise e WHERE e.categoryId like :CATEGORY_ID")
 })
 @Entity
@@ -16,7 +16,7 @@ import javax.persistence.*;
 @Data
 public class Exercise  extends BaseEntity {
 
-    public static final String GET_BY_TYPE = "getByType";
+    public static final String GET_BY_ID = "getById";
     public static final String GET_BY_CATEGORY_ID = "getByCategoryID";
 
     @Column(name = "TYPE", nullable = false)
@@ -41,6 +41,7 @@ public class Exercise  extends BaseEntity {
     @Column(name = "BASE", nullable = false)
     private String base;
 
-    @OneToOne(mappedBy = "exerciseId")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "RESULT_FK")
     private Result result;
 }

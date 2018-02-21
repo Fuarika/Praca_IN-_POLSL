@@ -9,9 +9,9 @@ import pl.oktawia.sporys.model.Exercise;
 public class ExerciseDaoImpl extends GenericDaoImpl<Exercise> implements ExerciseDao {
 
     @Override
-    public Exercise getByType(String type) {
-        Query query = session.openSession().getNamedQuery(Exercise.GET_BY_TYPE)
-                .setParameter("CATEGORY_ID", type);
+    public Exercise getById(Integer id) {
+        Query query = session.openSession().getNamedQuery(Exercise.GET_BY_ID)
+                .setParameter("ID", id);
         Exercise exercise = (Exercise) query.uniqueResult();
         return exercise;
     }

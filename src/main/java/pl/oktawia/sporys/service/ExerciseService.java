@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ExerciseService {
 
-    Exercise getByType(String type);
+    Exercise getById(Integer id);
     Exercise getByCategoryId(Long categoryId);
     List<Exercise> getAllExercisesByType(Types type);
     List<Exercise> getAll();

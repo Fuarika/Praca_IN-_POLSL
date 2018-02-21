@@ -4,17 +4,15 @@ CREATE TABLE RESULT(
   MODIFY_DATE DATE,
   VERSION INTEGER,
   ANSWER VARCHAR(40),
-  EXERCISE_ID INTEGER NOT NULL,
-  PRIMARY KEY (ID),
-  FOREIGN KEY (EXERCISE_ID) REFERENCES exercise (id)
+  PRIMARY KEY (ID)
   );
 
-INSERT INTO RESULT(ID, CREATION_DATE, MODIFY_DATE, VERSION, ANSWER, EXERCISE_ID)
-VALUES (nextval('id_sequence'), current_date, current_date, 1, 'ASC', 1);
+INSERT INTO RESULT(ID, CREATION_DATE, MODIFY_DATE, VERSION, ANSWER)
+VALUES (nextval('id_sequence'), current_date, current_date, 1, 'ASC');
 
 
-INSERT INTO RESULT(ID, CREATION_DATE, MODIFY_DATE, VERSION, ANSWER, EXERCISE_ID)
-VALUES (nextval('id_sequence'), current_date, current_date, 1, '10098', 2);
+INSERT INTO RESULT(ID, CREATION_DATE, MODIFY_DATE, VERSION, ANSWER)
+VALUES (nextval('id_sequence'), current_date, current_date, 1, '10098');
 
 COMMIT ;
 

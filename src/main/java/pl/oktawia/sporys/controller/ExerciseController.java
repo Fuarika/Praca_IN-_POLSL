@@ -12,6 +12,8 @@ import pl.oktawia.sporys.model.Exercise;
 import pl.oktawia.sporys.service.ExerciseService;
 import pl.oktawia.sporys.service.ResultService;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -19,9 +21,8 @@ import java.util.List;
 public class ExerciseController {
 
     private static final String EXERCISE = "exercise";
-    private static final String RESULT = "result";
-    private static final String END = "end";
     private static final String NOTHING = "index";
+    private static final String TEST = "test";
 
 
     @Autowired
@@ -30,56 +31,63 @@ public class ExerciseController {
     @Autowired
     ResultService resultService;
 
-    private List<Exercise> exerciseList;
-//
-//    @RequestMapping(method = RequestMethod.GET, value = "/{exerciseId}")
-//    public String exerciseById(Model model, @PathVariable Long id) {
-//        Exercise exercise = exerciseService.getByCategoryId(id);
-//        model.addAttribute("Exercise", exercise);
-//        return EXERCISE;
-//
-//    }
-
-    //@RequestMapping(method = RequestMethod.GET, value = "/{exerciseId}/{resultId}")
-    //public String resultById(Model model, @PathVariable Long resultId) {
-    //    Result result = resultService.getByExerciseId(resultId);
-    //    model.addAttribute("Result", result);
-    //    return RESULT;
-   // }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{type}")
-    public String chooseCategory(Model model, @RequestParam(value = "exType", required = false) Types types, @PathVariable("type") String type) {
+    public String chooseCategory(Model model, @PathVariable("type") String type) {
 
-        if (types == Types.ADDITION || type.equals("addition")){
+        if (type.equals("addition")){
             List<Exercise> exercises = exerciseService.getAllExercisesByType(Types.ADDITION);
             model.addAttribute( "exercises", exercises );
             if (exercises.isEmpty()) {
                 return NOTHING;
             }
             return EXERCISE;
-        } else if(types == Types.SUBTRATION || type.equals("subtration")) {
+        } else if(type.equals("subtration")) {
             List<Exercise> exercises = exerciseService.getAllExercisesByType(Types.SUBTRATION);
             model.addAttribute("exercises", exercises);
             if (exercises.isEmpty()) {
                 return NOTHING;
             }
             return EXERCISE;
-        } else if(types == Types.MULTIPLICATION || type.equals("multiplation")) {
+        } else if(type.equals("multiplation")) {
             List<Exercise> exercises = exerciseService.getAllExercisesByType(Types.MULTIPLICATION);
             model.addAttribute("exercises", exercises);
             if (exercises.isEmpty()) {
                 return NOTHING;
             }
             return EXERCISE;
-        } else if(types == Types.DIVISION || type.equals("division")) {
+        } else if(type.equals("division")) {
             List<Exercise> exercises = exerciseService.getAllExercisesByType(Types.DIVISION);
             model.addAttribute("exercises", exercises);
             if (exercises.isEmpty()) {
                 return NOTHING;
             }
             return EXERCISE;
-        } else {return NOTHING;}
+        } else
+            {return NOTHING;}
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/test")
+    public String chooseTest(Model model) {
+        LinkedList<Exercise> test= new LinkedList<>();
+        List<Exercise> exercises = exerciseService.getAll();
+        while (test.size() < 5){
+           Exercise ex = exerciseService.getRandomExercise(exercises);
+            if (!test.contains(ex)){
+                test.add(ex);
+            }
+        }
+        if (test.isEmpty()) {
+            return NOTHING;
+        }
+        model.addAttribute("test", test);
+        return TEST;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/")
+    public String checkExercise(Model model) {
+
+        return NOTHING;
+    }
 
 }

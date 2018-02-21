@@ -20,8 +20,8 @@ public class ExerciseServiceImpl implements ExerciseService {
     private Random random = new Random();
 
     @Override
-    public Exercise getByType(String type) {
-        return exerciseDao.getByType(type);
+    public Exercise getById(Integer id) {
+        return exerciseDao.getById(id);
     }
 
     @Override
@@ -48,8 +48,7 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Override
     public Exercise getRandomExercise(List<Exercise> exercises) {
-        int index = random.nextInt(exercises.size());
-        Exercise ex = exercises.get(index);
+        Exercise ex = exercises.get(random.nextInt(exercises.size()));
         return ex;
 
 
