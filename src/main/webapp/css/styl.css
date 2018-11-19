@@ -1,5 +1,5 @@
 body {
-	background: #e2e2e2;
+	background-color: #e2e2e2;
 	margin: 0 !important;
     padding: 0 !important;
 }
@@ -22,14 +22,14 @@ header {
 section { 
 	background: #e2e2e2; 
 	width:80%; 
-	height: 70%; 
+	height: 100%;
 	float: left; 
 }
 
-aside { 
-	background: #e2e2e2; 
+aside {
+	background-color: #e2e2e2;
 	width:20%; 
-	height: 100%; 
+	height: 100%;
 	float: right;
 }
 
