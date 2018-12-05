@@ -12,7 +12,7 @@ VALUES (nextval('id_sequence'), current_date, current_date, 1, 'ASC');
 
 
 INSERT INTO RESULT(ID, CREATION_DATE, MODIFY_DATE, VERSION, ANSWER)
-VALUES (nextval('id_sequence'), current_date, current_date, 1, '10098');
+VALUES (nextval('id_sequence'), current_date, current_date, 1, '0.21x10^3');
 
 COMMIT ;
 

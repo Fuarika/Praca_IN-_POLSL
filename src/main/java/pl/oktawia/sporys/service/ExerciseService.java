@@ -2,6 +2,7 @@ package pl.oktawia.sporys.service;
 
 import pl.oktawia.sporys.enums.Types;
 import pl.oktawia.sporys.model.Exercise;
+import pl.oktawia.sporys.model.Result;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ public interface ExerciseService {
 
     Exercise getById(Integer id);
     Exercise getByCategoryId(Long categoryId);
+    Exercise getByResultId(Integer resultId);
     List<Exercise> getAllExercisesByType(Types type);
     List<Exercise> getAll();
     Exercise getRandomExercise(List<Exercise> exercises);

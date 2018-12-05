@@ -84,10 +84,18 @@ public class ExerciseController {
         return TEST;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/")
-    public String checkExercise(Model model) {
+    //@RequestMapping(method = RequestMethod.GET, value = "/")
+   // public String checkExercise(Model model) {
+     //   String answer = new String();
+        //Exercise ex = exerciseService.getByResultId(model.addAttribute(exercise.id));
+          //  if (ex != model.addAttribute("answerId", answer)){
+          //      model.addAttribute("bad");
+          //      return "bad";
+         //   }else{
+           //     model.addAttribute("good");
+           //     return "good";
+          //  }
 
-        return NOTHING;
-    }
+   // }
 
 }

@@ -22,8 +22,8 @@ VALUES (nextval('id_sequence'), current_date, current_date, 1, 'SUBTRATION', 'od
 INSERT INTO EXERCISE(ID, CREATION_DATE, MODIFY_DATE, VERSION, TYPE, CONTENTS, MANTISE_ARG1,CELLING_ARG1, MANTISE_ARG2, CELLING_ARG2, BASE, RESULT_FK)
 VALUES (nextval('id_sequence'), current_date, current_date, 1, 'MULTIPLICATION', 'mnoz2', 0.95, -3, 0.44, 5, 10,6 );
 
-INSERT INTO EXERCISE(ID, CREATION_DATE, MODIFY_DATE, VERSION, TYPE, CONTENTS, MANTISE_ARG1,CELLING_ARG1, MANTISE_ARG2, CELLING_ARG2, BASE)
-VALUES (nextval('id_sequence'), current_date, current_date, 1, 'DIVISION', 'dzie3', 0.45, -3, 0.44, 5, 10 );
+INSERT INTO EXERCISE(ID, CREATION_DATE, MODIFY_DATE, VERSION, TYPE, CONTENTS, MANTISE_ARG1,CELLING_ARG1, MANTISE_ARG2, CELLING_ARG2, BASE, RESULT_FK)
+VALUES (nextval('id_sequence'), current_date, current_date, 1, 'DIVISION', 'dzie3', 0.45, -3, 0.44, 5, 10, 19 );
 
 INSERT INTO EXERCISE(ID, CREATION_DATE, MODIFY_DATE, VERSION, TYPE, CONTENTS, MANTISE_ARG1,CELLING_ARG1, MANTISE_ARG2, CELLING_ARG2, BASE)
 VALUES (nextval('id_sequence'), current_date, current_date, 1, 'ADDITION', 'DOD3', 0.43, -3, 0.44, 5, 10 );
@@ -32,7 +32,7 @@ VALUES (nextval('id_sequence'), current_date, current_date, 1, 'ADDITION', 'DOD3
 COMMIT;
 
 SELECT * FROM EXERCISE;
-
+OUTER JOIN
 DROP SEQUENCE id_sequence;
 
 --    ADDITION("Dodawanie", "+"),

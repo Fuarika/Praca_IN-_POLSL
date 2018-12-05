@@ -18,6 +18,7 @@ public class Exercise  extends BaseEntity {
 
     public static final String GET_BY_ID = "getById";
     public static final String GET_BY_CATEGORY_ID = "getByCategoryID";
+    public static final String GET_BY_RESULT_ID = "getByResultID";
 
     @Column(name = "TYPE", nullable = false)
     @Enumerated(EnumType.STRING)

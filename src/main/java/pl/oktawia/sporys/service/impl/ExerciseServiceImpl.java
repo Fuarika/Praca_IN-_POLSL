@@ -30,6 +30,11 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
+    public Exercise getByResultId(Integer resultId) {
+        return exerciseDao.getByResultId(resultId);
+    }
+
+    @Override
     public List<Exercise> getAllExercisesByType(Types type) {
         List<Exercise> allExercises = exerciseDao.getAll(Exercise.class);
         return filterForType(type, allExercises);
@@ -50,7 +55,6 @@ public class ExerciseServiceImpl implements ExerciseService {
     public Exercise getRandomExercise(List<Exercise> exercises) {
         Exercise ex = exercises.get(random.nextInt(exercises.size()));
         return ex;
-
-
     }
+
 }

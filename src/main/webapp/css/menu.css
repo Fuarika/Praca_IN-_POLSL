@@ -1,24 +1,21 @@
-
 ul {
     list-style-type: none;
     margin: 0;
-    padding: 0;
-    width: 60%;
+    padding: 20px;
+    width: 210px;
     background-color: #24406d;
-	font: 18px Gothic L, sans-serif;
-	margin-left: 21%;
+    font: 18px Gothic L, sans-serif;
 }
 
 li a {
     display: block;
     color: white;
-    padding: 8px 16px;
+    padding: 8px 8px;
     text-decoration: none;
-
 }
 
 li {
-	text-align: center;
+    text-align: center;
     border-bottom: 1px solid white;
 }
 
@@ -34,5 +31,5 @@ li a.active {
 li a:hover:not(.active) {
     background-color: #24406d;
     color: white;
-	text-shadow: 0px 0px 5px white;
+    text-shadow: 0px 0px 5px white;
 }
