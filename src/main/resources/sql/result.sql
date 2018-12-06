@@ -4,6 +4,10 @@ CREATE TABLE RESULT(
   MODIFY_DATE DATE,
   VERSION INTEGER,
   ANSWER VARCHAR(40),
+  STEP_1 VARCHAR(255),
+  STEP_2 VARCHAR(255),
+  STEP_3 VARCHAR(255),
+  STEP_4 VARCHAR(255),
   PRIMARY KEY (ID)
   );
 
@@ -12,7 +16,7 @@ VALUES (nextval('id_sequence'), current_date, current_date, 1, 'ASC');
 
 
 INSERT INTO RESULT(ID, CREATION_DATE, MODIFY_DATE, VERSION, ANSWER)
-VALUES (nextval('id_sequence'), current_date, current_date, 1, '0.21x10^3');
+VALUES (nextval('id_sequence'), current_date, current_date, 1, '0.4x10^2');
 
 COMMIT ;
 

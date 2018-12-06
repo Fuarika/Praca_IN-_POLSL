@@ -1,19 +1,25 @@
 package pl.oktawia.sporys.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.oktawia.sporys.dao.ExerciseDao;
 import pl.oktawia.sporys.enums.Types;
 import pl.oktawia.sporys.model.Exercise;
 import pl.oktawia.sporys.model.Result;
+import pl.oktawia.sporys.repository.ExerciseRepository;
 import pl.oktawia.sporys.repository.ResultRepository;
 import pl.oktawia.sporys.service.ExerciseService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class ExerciseServiceImpl implements ExerciseService {
 
     @Autowired
@@ -21,6 +27,9 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Autowired
     ResultRepository resultRepository;
+
+    @Autowired
+    ExerciseRepository exerciseRepository;
 
     private Random random = new Random();
 
@@ -41,9 +50,8 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Override
     public List<Exercise> getAllExercisesByType(Types type) {
-        List<Exercise> allExercises = exerciseDao.getAll(Exercise.class);
-        return filterForType(type, allExercises);
-                //getRandomExercise(filterForType(type, allExercises));
+        Optional<List<Exercise>> exercises = exerciseRepository.findAllByType(type);
+        return  exercises.orElseGet(() -> new ArrayList<>());
     }
 
     @Override

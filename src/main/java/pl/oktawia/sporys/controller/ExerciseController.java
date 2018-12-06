@@ -87,9 +87,11 @@ public class ExerciseController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/check")
-    public String checkExercise(Model model, @RequestParam(required=false, name="test") String request) {
+    public @ResponseBody String checkExercise(Model model, @RequestParam(required=false, name="ABC") Exercise request) {
+        model.addAttribute("ABC", request);
+
         //Result ex = exerciseService.getByResultId(request.getResult().getId());
-        return request;
+        return "aaa";
         //            if (ex != model.addAttribute("answerId", answer)){
 //                model.addAttribute("bad");
 //                return "bad";
