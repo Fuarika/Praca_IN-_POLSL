@@ -51,7 +51,7 @@
                 <#list exercises as exercise>
                     ZADANIE ${exercise.id} : ${exercise.contents} </br>
                         <label>ODPOWIEDZ:</label>
-                        <input id="exe_${exercise.id}"type="text" name="answer" size="50" maxlength"30" />
+                        <input id="exe_${exercise.id}" type="text" name="answer" size="50" maxlength"30" />
                         <div id="resultOK_${exercise.id}" hidden="true">OK</div>
                         <div id="resultBAD_${exercise.id}" hidden="true">Wracaj do teori ciole</div>
                         </br>
