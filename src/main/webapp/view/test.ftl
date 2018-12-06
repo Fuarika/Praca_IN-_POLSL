@@ -51,7 +51,7 @@
                 LICZBY ZMIENNOPRZECINKOWE</h1></b>
         </div>
         <div id="imglogo" >
-            <img src="../img/logo.png" alt="logopolsl" style="width: 160px; padding: 10px;" />
+            <img src="../img/logo.png" alt="logopolsl" style="width: 131px; padding: 10px;" />
         </div>
         <div style="clear:both;"></div>
         <div id="content">
