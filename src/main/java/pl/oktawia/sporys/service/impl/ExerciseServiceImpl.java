@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.oktawia.sporys.dao.ExerciseDao;
 import pl.oktawia.sporys.enums.Types;
 import pl.oktawia.sporys.model.Exercise;
+import pl.oktawia.sporys.model.Result;
+import pl.oktawia.sporys.repository.ResultRepository;
 import pl.oktawia.sporys.service.ExerciseService;
 
 import java.util.List;
@@ -16,6 +18,9 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Autowired
     ExerciseDao exerciseDao;
+
+    @Autowired
+    ResultRepository resultRepository;
 
     private Random random = new Random();
 
@@ -30,8 +35,8 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public Exercise getByResultId(Integer resultId) {
-        return exerciseDao.getByResultId(resultId);
+    public Result getByResultId(Long resultId) {
+        return resultRepository.findById(resultId.longValue());
     }
 
     @Override

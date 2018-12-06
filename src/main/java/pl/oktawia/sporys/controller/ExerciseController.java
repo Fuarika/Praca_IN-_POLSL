@@ -1,14 +1,14 @@
 package pl.oktawia.sporys.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import pl.oktawia.sporys.enums.Types;
 import pl.oktawia.sporys.model.Exercise;
+import pl.oktawia.sporys.model.Result;
+import pl.oktawia.sporys.request.ExerciseRequest;
 import pl.oktawia.sporys.service.ExerciseService;
 import pl.oktawia.sporys.service.ResultService;
 
@@ -18,6 +18,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/")
+@Slf4j
 public class ExerciseController {
 
     private static final String EXERCISE = "exercise";
@@ -45,6 +46,7 @@ public class ExerciseController {
         } else if(type.equals("subtration")) {
             List<Exercise> exercises = exerciseService.getAllExercisesByType(Types.SUBTRATION);
             model.addAttribute("exercises", exercises);
+            model.addAttribute("exerciseRequest", new ExerciseRequest());
             if (exercises.isEmpty()) {
                 return NOTHING;
             }
@@ -84,18 +86,18 @@ public class ExerciseController {
         return TEST;
     }
 
-    //@RequestMapping(method = RequestMethod.GET, value = "/")
-   // public String checkExercise(Model model) {
-     //   String answer = new String();
-        //Exercise ex = exerciseService.getByResultId(model.addAttribute(exercise.id));
-          //  if (ex != model.addAttribute("answerId", answer)){
-          //      model.addAttribute("bad");
-          //      return "bad";
-         //   }else{
-           //     model.addAttribute("good");
-           //     return "good";
-          //  }
+    @RequestMapping(method = RequestMethod.POST, value = "/check")
+    public String checkExercise(Model model, @RequestParam(required=false, name="test") String request) {
+        //Result ex = exerciseService.getByResultId(request.getResult().getId());
+        return request;
+        //            if (ex != model.addAttribute("answerId", answer)){
+//                model.addAttribute("bad");
+//                return "bad";
+//            }else{
+//                model.addAttribute("good");
+//                return "good";
+//            }
 
-   // }
+    }
 
 }

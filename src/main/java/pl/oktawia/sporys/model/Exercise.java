@@ -42,7 +42,7 @@ public class Exercise  extends BaseEntity {
     @Column(name = "BASE", nullable = false)
     private String base;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "RESULT_FK")
+  @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "RESULT_FK")
     private Result result;
 }

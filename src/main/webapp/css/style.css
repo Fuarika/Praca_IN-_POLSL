@@ -60,3 +60,16 @@ body {
 	margin-top: 5px;
 	padding: 30px;
 }
+
+#ramka1{
+	margin-left: auto;
+	margin-right: auto;
+	width: 140px;
+	height: 40px;
+	padding: 5px;
+	text-align: center;
+	margin-top: 20px;
+}
+.content h1 {
+	font: 24px Gothic L, sans-serif, bold;
+}

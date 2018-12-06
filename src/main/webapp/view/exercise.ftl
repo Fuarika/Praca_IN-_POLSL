@@ -1,3 +1,4 @@
+<#import "/spring.ftl" as spring/>
 <html lang="pl">
 <head>
     <meta charset="utf-8" />
@@ -37,10 +38,14 @@
         <div id="content">
                 <#list exercises as exercise>
                     ZADANIE ${exercise.id} : ${exercise.contents} </br>
-                    <form action="*">
+                    <form name="test" method="POST" action="check">
                         <label>ODPOWIEDZ:</label> <input id="answerId"type="text" name="answer" size="50" maxlength"30" />
-                        </br> <p style="min-font-size:4px ">Odpowiedz zapisz w formacie Mxp^C (ex. 0.20x10^-3)</p>
-                        </br> <button id="buttonId" type="submit" onclick="check()">Sprawdź</button><button id= "buttonSprId" type="submit" onclick="myFunction('answer')" disabled ="true">Pokarz rozwiązanie</button>
+                        </br>
+                        <p style="min-font-size:4px ">Odpowiedz zapisz w formacie Mxp^C (ex. 0.20x10^-3)</p>
+                        </br>
+
+                        <button id="buttonId" type="submit">Sprawdź</button>
+                        <button id= "buttonSprId" type="submit" onclick="myFunction('answer')" disabled ="true">Pokarz rozwiązanie</button>
                         <div id="answer" style="display:none;">BAAK BAKA</div>
                     </form>
                     <hr>

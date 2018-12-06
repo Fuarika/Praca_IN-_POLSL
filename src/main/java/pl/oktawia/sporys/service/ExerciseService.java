@@ -10,7 +10,7 @@ public interface ExerciseService {
 
     Exercise getById(Integer id);
     Exercise getByCategoryId(Long categoryId);
-    Exercise getByResultId(Integer resultId);
+    Result getByResultId(Long resultId);
     List<Exercise> getAllExercisesByType(Types type);
     List<Exercise> getAll();
     Exercise getRandomExercise(List<Exercise> exercises);
