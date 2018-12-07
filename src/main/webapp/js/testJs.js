@@ -13,18 +13,21 @@ function showTest(testId){
 }
 
 function endTest(){
-    var p = countCorretAswer();
+    var p = countCorrectAnswer();
     alert("Udało cię się zdobyć " + p + "/5 punktow!");
     document.getElementById("buttonEndTest").disabled = true;
 }
 
-function countCorretAswer(){
+function countCorrectAnswer(){
     var numCorrect = 0;
 
     for (var i=0; i<5; i++){
         var exResult = document.getElementById("ex_result_" + i).innerHTML;
-        var userResult = document.getElementById("user_result_" + i).innerHTML;
-        if(exResult.localeCompare(userResult) === 0){
+        var userResultField = document.getElementById("user_result_" + i).innerHTML;
+        var userR = document.getElementById(userResultField).value;
+
+        if(exResult.localeCompare(userR) == 0){
+
             numCorrect++;
         }
     }
