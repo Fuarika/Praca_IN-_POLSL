@@ -8,31 +8,8 @@
     <link rel="stylesheet" href="../css/menu.css" type="text/css" />
     <script type="text/javascript"  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript">
-        function myFunction(myDIV) {
-            var x = document.getElementById(myDIV);
+        function addExercise(){
 
-            if (x.style.display === "block") {
-                x.style.display = "none";
-            } else {
-                x.style.display = "block";
-            }
-        }
-
-
-        // fieldId = exercise.id exeResult = exercise.result.answer resultId = exercise.result.id
-        function checkSolution(exeResult, userResult, fieldId, resultId) {
-            if(exeResult.localeCompare(userResult) === 0) {
-                document.getElementById("resultOK_"+fieldId).hidden = false;
-                document.getElementById("resultBAD_"+fieldId).hidden = true;
-                document.getElementById("button_"+fieldId).disabled = true;
-                document.getElementById("buttonShow_"+resultId).hidden = false;
-
-            }else{
-                document.getElementById("resultOK_"+fieldId).hidden = true;
-                document.getElementById("resultBAD_"+fieldId).hidden = false;
-                document.getElementById("button_"+fieldId).disabled = true;
-                document.getElementById("buttonShow_"+resultId).hidden = false;
-            }
         }
     </script>
 </head>
@@ -48,22 +25,15 @@
     </div>
     <div style="clear:both;"></div>
     <div id="content">
-                <#list exercises as exercise>
-                    ZADANIE ${exercise.id} : ${exercise.contents} </br>
-                    <label>ODPOWIEDZ:</label>
-                    <input id="exe_${exercise.id}" type="text" name="answer" size="50" maxlength"30" />
-                    <div id="resultOK_${exercise.id}" hidden="true">OK</div>
-                    <div id="resultBAD_${exercise.id}" hidden="true">Wracaj do teori ciole</div>
-                    </br>
-                    <p style="min-font-size:4px ">Odpowiedz zapisz w formacie Mxp^C (ex. 0.20x10^-3)</p>
-                    </br>
-                    ${exercise.result.answer}
-                    <button id="button_${exercise.id}" onclick="checkSolution('${exercise.result.answer}',document.getElementById('exe_${exercise.id}').value, '${exercise.id}', '${exercise.result.id}' )">Sprawdź</button>
-                    <button id= "buttonShow_${exercise.result.id}" type="submit" onclick="myFunction('answer_${exercise.result.id}')" hidden ="true">Pokarz rozwiązanie</button>
-                    <div id="answer_${exercise.result.id}" style="display:none;">BAAK BAKA</div>
+        <form>
+            <input id="exe_${exercise.id}" type="text" name="answer" size="50" maxlength"30" />
 
-                    <hr>
-                </#list>
+            </br>
+            </br>
+
+                    <button id="buttonAdd" onclick="addExercise()">Dodaj</button>
+
+        </form>
     </div>
     <div class="nav">
         <ul>

@@ -9,14 +9,14 @@ import static java.lang.StrictMath.pow;
 public class Arithmetic {
     private Double tmpMy;
     private Double tmpMx;
-    public Double arg1M;
-    public Double arg2M;
-    public Double arg1C;
-    public Double arg2C;
-    public Double arg1P;
-    public Double arg2P;
+    private Double arg1M;
+    private Double arg2M;
+    private Double arg1C;
+    private Double arg2C;
+    private Double arg1P;
+    private Double arg2P;
 
-    public void splitArg(Exercise ex) {
+    private void splitArg(Exercise ex) {
         String arg1;
         String arg2;
 
