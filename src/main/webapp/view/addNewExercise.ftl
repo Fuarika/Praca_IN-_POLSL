@@ -26,12 +26,18 @@
     <div style="clear:both;"></div>
     <div id="content">
         <form>
-            <input id="exe_${exercise.id}" type="text" name="answer" size="50" maxlength"30" />
+            <input id="arg1_m" type="text" name="answer" size="50" maxlength"10" />
+            <input id="arg1_p" type="text" name="answer" size="50" maxlength"10" />
+            <input id="arg1_c" type="text" name="answer" size="50" maxlength"10" />
+            <br />
+            <input id="arg2_m" type="text" name="answer" size="50" maxlength"10" />
+            <input id="arg2_p" type="text" name="answer" size="50" maxlength"10" />
+            <input id="arg2_c" type="text" name="answer" size="50" maxlength"10" />
 
-            </br>
-            </br>
+            <br />
+            <br />
 
-                    <button id="buttonAdd" onclick="addExercise()">Dodaj</button>
+                    <button id="buttonAdd">Dodaj</button>
 
         </form>
     </div>
