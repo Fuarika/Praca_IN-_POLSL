@@ -86,7 +86,7 @@ public class ExerciseController {
         return TEST;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/check")
+    @RequestMapping(method = RequestMethod.POST, value = "/addNewExercise")
     public @ResponseBody String checkExercise(Model model, @RequestParam(required=false, name="ABC") Exercise request) {
         model.addAttribute("ABC", request);
 
