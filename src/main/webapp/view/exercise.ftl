@@ -3,9 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <title> ASC -Liczby zmiennoprzecinkowe</title>
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
     <link rel="stylesheet" href="../css/style.css" type="text/css" />
     <link rel="stylesheet" href="../css/menu.css" type="text/css" />
+
     <script type="text/javascript"  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="../js/exerciseJs.js"></script>
 </head>
@@ -24,9 +27,13 @@
                 <#list exercises as exercise>
                     ZADANIE ${exercise.id} : ${exercise.contents} </br>
                         <label>ODPOWIEDZ:</label>
-                        <input id="exe_${exercise.id}" type="text" name="answer" size="50" maxlength"30" />
-                        <div id="resultOK_${exercise.id}" hidden="true">OK</div>
-                        <div id="resultBAD_${exercise.id}" hidden="true">Wracaj do teori ciole</div>
+                        <input id="exe_${exercise.id}" type="text" name="answer" size="50" maxlength"25" />
+                        <div id="resultOK_${exercise.id}" style="color: green; display: none;">
+                            <span class="ok_symbol">&#10004;</span>
+                        </div>
+                        <div id="resultBAD_${exercise.id}" style="color: red; display: none;">
+                            <span class="bad_symbol">&#10006;</span>
+                        </div>
                         </br>
                         <p style="min-font-size:4px ">Odpowiedz zapisz w formacie Mxp^C (ex. 0.20x10^-3)</p>
                         </br>
