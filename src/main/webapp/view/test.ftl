@@ -31,7 +31,7 @@
                     <label>ODPOWIEDZ:</label>
                     <input id="exe_${ex.id}" type="text" name="answer" size="50" maxlength"30" />
                     <br />
-                    <p >Odpowiedz zapisz w formacie Mxp^C (ex. 0.20x10^-3)</p>
+                    <p style="font-size:10px">Odpowiedz zapisz w formacie Mxp^C (ex. 0.20x10^-3)</p>
                         ${ex.result.answer}
                     <div id="user_result_${ex?index}" hidden="true">exe_${ex.id}</div>
                     <div id="ex_result_${ex?index}" hidden="true">${ex.result.answer}</div>

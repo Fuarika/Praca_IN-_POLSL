@@ -86,19 +86,19 @@ public class ExerciseController {
         return TEST;
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/addNewExercise")
+    public String addExerciseForm(Model model){
+        Exercise ex = new Exercise();
+        model.addAttribute("exerciseForm", ex);
+        return "addNewExercise";
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "/addNewExercise")
-    public @ResponseBody String checkExercise(Model model, @RequestParam(required=false, name="ABC") Exercise request) {
+    public @ResponseBody String addExerciseSave(Model model, @RequestParam(required=false, name="ABC") Exercise request) {
         model.addAttribute("ABC", request);
 
-        //Result ex = exerciseService.getByResultId(request.getResult().getId());
         return "aaa";
-        //            if (ex != model.addAttribute("answerId", answer)){
-//                model.addAttribute("bad");
-//                return "bad";
-//            }else{
-//                model.addAttribute("good");
-//                return "good";
-//            }
+
 
     }
 

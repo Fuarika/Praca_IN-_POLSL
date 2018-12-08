@@ -25,20 +25,33 @@
     </div>
     <div style="clear:both;"></div>
     <div id="content">
-        <form>
-            <input id="arg1_m" type="text" name="answer" size="50" maxlength"10" />
-            <input id="arg1_p" type="text" name="answer" size="50" maxlength"10" />
-            <input id="arg1_c" type="text" name="answer" size="50" maxlength"10" />
-            <br />
-            <input id="arg2_m" type="text" name="answer" size="50" maxlength"10" />
-            <input id="arg2_p" type="text" name="answer" size="50" maxlength"10" />
-            <input id="arg2_c" type="text" name="answer" size="50" maxlength"10" />
+        <hr>
 
             <br />
+            <form>
+                X =
+                <input id="arg1_m" type="text" name="arg1_m" size="6" maxlength"6" />
+                o 10^
+                <input id="arg1_c" type="text" name="arg1_c" size="4" maxlength"5" />
+                <br />
+                <p style="font-size:10px"> X = Mx o p^Cx</p>
+                Y =
+                <input id="arg2_m" type="text" name="arg2_m" size="6" maxlength"6" />
+                o 10^
+                <input id="arg2_c" type="text" name="arg2_c" size="4" maxlength"5" />
+                <br />
+                <p style="font-size:10px"> Y = My o p^Cy</p>
+                Wybierz rodzaj działania:
+                <br />
+
+                <input type="radio" name="type" value="addition" checked> Dodawanie
+                <input type="radio" name="type" value="subtration"> Odejmowanie
+                <br>
+                <input type="radio" name="type" value="multiplation"> Mnożenie
+                <input type="radio" name="type" value="division"> Dzielenie
+                <br />
             <br />
-
-                    <button id="buttonAdd">Dodaj</button>
-
+            <button id="buttonAdd" type="submit" style="width: 200px;">Dodaj</button>
         </form>
     </div>
     <div class="nav">

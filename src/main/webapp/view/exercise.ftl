@@ -24,6 +24,7 @@
         </div>
         <div style="clear:both;"></div>
         <div id="content">
+            <hr>
                 <#list exercises as exercise>
                     ZADANIE ${exercise.id} : ${exercise.contents} </br>
                         <label>ODPOWIEDZ:</label>
@@ -35,12 +36,12 @@
                             <span class="bad_symbol">&#10006;</span>
                         </div>
                         </br>
-                        <p style="min-font-size:4px ">Odpowiedz zapisz w formacie Mxp^C (ex. 0.20x10^-3)</p>
+                        <p style="font-size:10px">Odpowiedź zapisz w formacie Mxp^C (ex. 0.20x10^-3).</p>
                         </br>
                             ${exercise.result.answer}
                         <button id="button_${exercise.id}" onclick="checkSolution('${exercise.result.answer}',document.getElementById('exe_${exercise.id}').value, '${exercise.id}', '${exercise.result.id}' )">Sprawdź</button>
                         <button id= "buttonShow_${exercise.result.id}" type="submit" onclick="myFunction('answer_${exercise.result.id}')" hidden ="true">Pokarz rozwiązanie</button>
-                        <div id="answer_${exercise.result.id}" style="display:none;">BAAK BAKA</div>
+                        <div id="answer_${exercise.result.id}" style="display:none;">tu winno byc step by step</div>
 
                     <hr>
                 </#list>
