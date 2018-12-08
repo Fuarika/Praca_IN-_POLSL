@@ -23,7 +23,8 @@
         <div id="content">
             <button id="buttonStartTest" onclick="showTest('formTest')">START TEST</button>
                 <div id="formTest" hidden="true">
-                    <div id="clock"></div>
+                    <div id="clock" style="text-align: center;">01:00</div>
+                    <hr>
                     <#list test as ex>
                     ZADANIE ${ex.id} : ${ex.contents}
                     <br />
