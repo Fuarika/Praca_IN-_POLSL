@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.oktawia.sporys.algorithm.Arithmetic;
 import pl.oktawia.sporys.enums.Types;
 import pl.oktawia.sporys.model.Exercise;
 import pl.oktawia.sporys.model.Result;
@@ -112,7 +113,7 @@ public class ExerciseController {
 
                 if(type.compareTo(Types.ADDITION) == 0 || type.compareTo(Types.SUBTRATION) == 0 ){
 
-                    // funkcja liczona wzraca id do resulta
+                  // Integer resultId = Arithmetic.addOrSubFloatingPoint(type, arg1_m, arg1_c, arg2_m,arg2_c, p);
 
                 }else if (type.compareTo(Types.MULTIPLICATION) == 0){
 

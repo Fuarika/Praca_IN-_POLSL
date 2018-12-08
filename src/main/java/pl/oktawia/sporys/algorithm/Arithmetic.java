@@ -2,16 +2,20 @@ package pl.oktawia.sporys.algorithm;
 
 import pl.oktawia.sporys.enums.Types;
 import pl.oktawia.sporys.model.Exercise;
+import pl.oktawia.sporys.repository.ResultRepository;
 
 import static java.lang.Math.max;
 import static java.lang.StrictMath.pow;
 
 
 public class Arithmetic {
+
     private Double tmpMy;
     private Double tmpMx;
     private String z;
 
+
+    ResultRepository resultRepository;
 
     private Integer absoluteValue(Integer arg1C, Integer arg2C) {
         Integer tmp = arg1C - arg2C;
@@ -58,7 +62,7 @@ public class Arithmetic {
 
         }
 
-        ///resultRposity.addResult(); // dodaje i wzraca numer id powstalego rezulta
+        resultRepository.insertResult(z, "a" , "b","c", "d"); // dodaje i wzraca numer id powstalego rezulta
         return 23; // wzraca numer id resulta?
     }
 

@@ -1,9 +1,13 @@
 package pl.oktawia.sporys.repository.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import pl.oktawia.sporys.model.Result;
 import org.hibernate.SessionFactory;
 
 public class ResultRepositoryImpl {
+
+    @Autowired
+    SessionFactory session;
 
     Integer insertResult(String answer, String step1, String step2, String step3, String step4 ){
         Result result = new Result();
@@ -15,6 +19,6 @@ public class ResultRepositoryImpl {
         //session.persist(result);
 
         //Integer resultId = (Integer)session.save(result);
-        return 1;
+        return 1; // wzraca id do resulta
     }
 }
