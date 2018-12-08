@@ -1,5 +1,6 @@
 package pl.oktawia.sporys.algorithm;
 
+import pl.oktawia.sporys.enums.Types;
 import pl.oktawia.sporys.model.Exercise;
 
 import static java.lang.Math.max;
@@ -9,95 +10,79 @@ import static java.lang.StrictMath.pow;
 public class Arithmetic {
     private Double tmpMy;
     private Double tmpMx;
-    private Double arg1M;
-    private Double arg2M;
-    private Double arg1C;
-    private Double arg2C;
-    private Double arg1P;
-    private Double arg2P;
-
-    private void splitArg(Exercise ex) {
-        String arg1;
-        String arg2;
+    private String z;
 
 
-       // arg1M = Double.valueOf(arg1.substring(1,4));
-       // arg1C = Double.valueOf(arg1.substring(6,7));
-        //arg1P = Double.valueOf(arg1.substring(9,11));
-
-        //arg2M = Double.valueOf(arg2.substring(1,4));
-        //arg2C = Double.valueOf(arg2.substring(6,7));
-        //arg2P = Double.valueOf(arg2.substring(9,11));
-    }
-
-    private Double absoluteValue(Double arg1C, Double arg2C) {
-        Double tmp = arg1C - arg2C;
+    private Integer absoluteValue(Integer arg1C, Integer arg2C) {
+        Integer tmp = arg1C - arg2C;
 
         if (tmp >= 0) {
             return tmp;
         } else
             return -tmp;
     }
-    public String additionalFloatingPoint( Exercise ex ) {
-        splitArg(ex);
-        Double tmpC;
+    public Integer addOrSubFloatingPoint( Types type, String arg1M, Integer arg1C,
+                                                      String arg2M, Integer arg2C, Integer p ) {
+
+        Double dArg1M = Double.valueOf(arg1M);
+        Double dArg2M = Double.valueOf(arg2M);
+
+        Integer tmpC;
         tmpC = arg1C - arg2C;
+
         if (tmpC == 0) {
-            tmpMx = arg1M;
-            tmpMy = arg2M;
+            tmpMx = dArg1M;
+            tmpMy = dArg2M;
         } else if (tmpC > 0) {
-            Double tmp = -absoluteValue(arg1C,arg2C);
-            tmpMx = arg1M;
-            tmpMy = arg2M*(pow(arg2P,tmp));
+            Integer tmp = -absoluteValue(arg1C,arg2C);
+            tmpMx = dArg1M;
+            tmpMy = dArg2M*(pow(p,tmp));
         } else if (tmpC < 0) {
-            Double tmp = -absoluteValue(arg1C,arg2C);
-            tmpMx = arg1M*(pow(arg2P,tmp));
-            tmpMy = arg2M;
+            Integer tmp = -absoluteValue(arg1C,arg2C);
+
+            tmpMx =  dArg1M *(pow(p,tmp));
+            tmpMy = dArg2M;
         }
-        Double mZ = tmpMx + tmpMy;
-        Double cZ = max(arg1C,arg2C);
-        String z = String.valueOf(mZ) + "x" + String.valueOf(arg1P) + "^"
-                + String.valueOf(cZ);
-        return z;
-    }
 
-    public String odejmowanieFloatingPoint( Exercise ex ) {
-        splitArg(ex);
-        Double tmpC;
-        tmpC = arg1C - arg2C;
-        if (tmpC == 0) {
-            tmpMx = arg1M;
-            tmpMy = arg2M;
-        } else if (tmpC > 0) {
-            Double tmp = -absoluteValue(arg1C,arg2C);
-            tmpMx = arg1M;
-            tmpMy = arg2M*(pow(arg2P,tmp));
-        } else if (tmpC < 0) {
-            Double tmp = -absoluteValue(arg1C,arg2C);
-            tmpMx = arg1M*(pow(arg2P,tmp));
-            tmpMy = arg2M;
+        if(type.compareTo(Types.ADDITION) == 0){
+            Double mZ = tmpMx + tmpMy;
+            Integer cZ = max(arg1C,arg2C);
+            z = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
+                    + String.valueOf(cZ);
+
+        }else if (type.compareTo(Types.SUBTRATION) == 0){
+            Double mZ = tmpMx - tmpMy;
+            Integer cZ = max(arg1C,arg2C);
+            z = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
+                    + String.valueOf(cZ);
+
         }
-        Double mZ = tmpMx - tmpMy;
-        Double cZ = max(arg1C,arg2C);
-        String z = String.valueOf(mZ) + "x" + String.valueOf(arg1P) + "^"
+
+        ///resultRposity.addResult(); // dodaje i wzraca numer id powstalego rezulta
+        return 23; // wzraca numer id resulta?
+    }
+
+
+    public String multiplicatonFlatingPoint(String arg1M, Integer arg1C, String arg2M, Integer arg2C, Integer p) {
+
+        Double dArg1M = Double.valueOf(arg1M);
+        Double dArg2M = Double.valueOf(arg2M);
+
+        Double mZ = dArg1M * dArg2M;
+        Integer cZ = arg1C + arg2C;
+        z = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                 + String.valueOf(cZ);
         return z;
     }
 
-    public String mnozenieFlatingPoint(Exercise ex) {
-        splitArg(ex);
-        Double mZ = arg1M * arg2M;
-        Double cZ = arg1C + arg2C;
-        String z = String.valueOf(mZ) + "x" + String.valueOf(arg1P) + "^"
-                + String.valueOf(cZ);
-        return z;
-    }
+    public String divisionFlatingPoint(String arg1M, Integer arg1C, String arg2M, Integer arg2C, Integer p) {
 
-    public String dzielenieFlatingPoint(Exercise ex) {
-        splitArg(ex);
-        Double mZ = arg1M / arg2M;
-        Double cZ = arg1C - arg2C;
-        String z = String.valueOf(mZ) + "x" + String.valueOf(arg1P) + "^"
+        Double dArg1M = Double.valueOf(arg1M);
+        Double dArg2M = Double.valueOf(arg2M);
+
+        Double mZ = dArg1M / dArg2M;
+        Integer cZ = arg1C - arg2C;
+        z = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                 + String.valueOf(cZ);
         return z;
     }

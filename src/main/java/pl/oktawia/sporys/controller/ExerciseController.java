@@ -94,11 +94,48 @@ public class ExerciseController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/addNewExercise")
-    public @ResponseBody String addExerciseSave(Model model, @RequestParam(required=false, name="ABC") Exercise request) {
-        model.addAttribute("ABC", request);
+    public @ResponseBody String addExerciseSave(Model model,
+                                    @RequestParam(required=false, name="exerciseForm") Exercise exerciseForm) {
+
+       String arg1_m = exerciseForm.getMantiseArg1();
+       String arg1_c = exerciseForm.getCellingArg1();
+       String arg2_m = exerciseForm.getMantiseArg2();
+       String arg2_c = exerciseForm.getCellingArg2();
+       Types type = exerciseForm.getType();
+       int p = 10;
+
+       if(arg1_m != null && arg1_m.length() > 0 && arg1_c != null && arg1_c.length() > 0
+               && arg2_m != null && arg2_m.length() > 0 && arg2_c != null && arg2_c.length() > 0){
+
+           if(arg1_m.matches("[-+]?[0-9]*\\.?[0-9]+") && arg2_m.matches("[-+]?[0-9]*\\.?[0-9]+")
+                   && arg1_c.matches("[-+]?[0-9]") && arg2_c.matches("[-+]?[0-9]")) {
+
+                if(type.compareTo(Types.ADDITION) == 0 || type.compareTo(Types.SUBTRATION) == 0 ){
+
+                    // funkcja liczona wzraca id do resulta
+
+                }else if (type.compareTo(Types.MULTIPLICATION) == 0){
+
+
+
+                }else if (type.compareTo(Types.DIVISION) == 0){
+
+
+
+                }
+               Exercise exerciseNew = new Exercise();
+                // dodanie nowego zadania podajac dane :D
+
+           }else {
+               return "to nie są liczby";
+           }
+
+       }else {
+           return "nie sa wypelnione pola poprawnie,sprawdz jeszcze raz";
+       }
+
 
         return "aaa";
-
 
     }
 
