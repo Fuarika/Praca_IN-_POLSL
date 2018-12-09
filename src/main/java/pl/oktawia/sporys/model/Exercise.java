@@ -5,6 +5,7 @@ import pl.oktawia.sporys.enums.Types;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "EXERCISE")
@@ -15,8 +16,19 @@ public class Exercise  extends BaseEntity {
     public static final String GET_BY_CATEGORY_ID = "getByCategoryID";
     public static final String GET_BY_RESULT_ID = "getByResultID";
 
+    private LocalDate creationDate;
+    private LocalDate modiftDate;
+    private Long id;
+    private Long version;
+
     public Exercise(Types type, String content, Double arg1M, Integer arg1C, Double arg2M,
                     Integer arg2C, Integer base, Result result) {
+
+        this.id = getId();
+        this.creationDate = getCreationDate();
+        this.modiftDate = getModiftDate();
+        this.version = getVersion();
+
         this.type = type;
         this.contents = content;
         this.mantiseArg1 = arg1M;

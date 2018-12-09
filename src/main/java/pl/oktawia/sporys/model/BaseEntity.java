@@ -14,7 +14,7 @@ public class BaseEntity implements Serializable{
     //    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 
