@@ -28,27 +28,20 @@
         <hr>
 
             <br />
-            <form name="exerciseForm" action="addNewExercise.ftl" method="POST">
-                X =
-                <input id="arg1_m" type="text" name="arg1_m" size="6" maxlength"6" />
+            <form name="exerciseForm" action="addNewExercise" method="POST">
+                X = <@spring.formInput "exerciseForm.mantiseArg1" "" "text" />
                 o 10^
-                <input id="arg1_c" type="text" name="arg1_c" size="4" maxlength"5" />
+                <@spring.formInput "exerciseForm.cellingArg1" "" "text" />
                 <br />
                 <p style="font-size:10px"> X = Mx o p^Cx</p>
                 Y =
-                <input id="arg2_m" type="text" name="arg2_m" size="6" maxlength"6" />
+                <@spring.formInput "exerciseForm.mantiseArg2" "" "text" />
                 o 10^
-                <input id="arg2_c" type="text" name="arg2_c" size="4" maxlength"5" />
+                <@spring.formInput "exerciseForm.cellingArg2" "" "text" />
                 <br />
                 <p style="font-size:10px"> Y = My o p^Cy</p>
-                Wybierz rodzaj działania:
+                Wpisz rodzaj działania:
                 <br />
-
-                <input type="radio" name="type" value="addition" checked> Dodawanie
-                <input type="radio" name="type" value="subtration"> Odejmowanie
-                <br>
-                <input type="radio" name="type" value="multiplation"> Mnożenie
-                <input type="radio" name="type" value="division"> Dzielenie
                 <br />
             <br />
             <button id="buttonAdd" type="submit" style="width: 200px;">Dodaj</button>

@@ -13,7 +13,6 @@ public class Result extends BaseEntity {
     public Result(String answer) {
         this.answer = answer;
     }
-
     public Result(){}
 
     @Column(name = "ANSWER", nullable = false)

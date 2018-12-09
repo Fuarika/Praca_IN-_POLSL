@@ -71,8 +71,10 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public void addExercise(Result result) {
-        Exercise exercise = new Exercise(result);
+    public void addExercise(Types type, String content, Double arg1M, Integer arg1C, Double arg2M,
+                            Integer arg2C, Integer base, Result result) {
+        Exercise exercise = new Exercise(type, content, arg1M,arg1C,arg2M,arg2C,base,result);
+        //Exercise exercise = new Exercise(result);
         exerciseRepository.save(exercise);
         //exercise.
 

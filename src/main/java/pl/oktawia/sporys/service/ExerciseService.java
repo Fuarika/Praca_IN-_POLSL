@@ -14,5 +14,7 @@ public interface ExerciseService {
     List<Exercise> getAllExercisesByType(Types type);
     List<Exercise> getAll();
     Exercise getRandomExercise(List<Exercise> exercises);
-    void addExercise(Result result);
+    void addExercise(Types type, String content, Double arg1M, Integer arg1C, Double arg2M,
+                     Integer arg2C, Integer base, Result result);
+   //void addExercise(Result result);
 }

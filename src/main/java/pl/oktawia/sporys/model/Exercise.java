@@ -4,6 +4,7 @@ import lombok.Data;
 import pl.oktawia.sporys.enums.Types;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity
 @Table(name = "EXERCISE")
@@ -14,6 +15,17 @@ public class Exercise  extends BaseEntity {
     public static final String GET_BY_CATEGORY_ID = "getByCategoryID";
     public static final String GET_BY_RESULT_ID = "getByResultID";
 
+    public Exercise(Types type, String content, Double arg1M, Integer arg1C, Double arg2M,
+                    Integer arg2C, Integer base, Result result) {
+        this.type = type;
+        this.contents = content;
+        this.mantiseArg1 = arg1M;
+        this.cellingArg1 = arg1C;
+        this.mantiseArg2 = arg2M;
+        this.cellingArg2 = arg2C;
+        this.base = base;
+        this.result = result;
+    }
     public Exercise(Result result) {
         this.result = result;
     }
@@ -29,19 +41,19 @@ public class Exercise  extends BaseEntity {
     private String contents;
 
     @Column(name = "MANTISE_ARG1", nullable = false)
-    private String mantiseArg1;
+    private Double mantiseArg1;
 
     @Column(name = "CELLING_ARG1", nullable = false)
-    private String cellingArg1;
+    private Integer cellingArg1;
 
     @Column(name = "MANTISE_ARG2", nullable = false)
-    private String mantiseArg2;
+    private Double mantiseArg2;
 
     @Column(name = "CELLING_ARG2", nullable = false)
-    private String cellingArg2;
+    private Integer cellingArg2;
 
     @Column(name = "BASE", nullable = false)
-    private String base;
+    private Integer base;
 
     @OneToOne
     @JoinColumn(name = "result_fk")

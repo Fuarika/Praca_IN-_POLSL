@@ -27,27 +27,27 @@ public class Arithmetic {
         } else
             return -tmp;
     }
-    public Result addOrSubFloatingPoint(Types type, String arg1M, Integer arg1C,
-                                        String arg2M, Integer arg2C, Integer p ) {
+    public Result addOrSubFloatingPoint(Types type, Double arg1M, Integer arg1C,
+                                        Double arg2M, Integer arg2C, Integer p ) {
 
-        Double dArg1M = Double.valueOf(arg1M);
-        Double dArg2M = Double.valueOf(arg2M);
+        //Double dArg1M = Double.valueOf(arg1M);
+        //Double dArg2M = Double.valueOf(arg2M);
 
         Integer tmpC;
         tmpC = arg1C - arg2C;
 
         if (tmpC == 0) {
-            tmpMx = dArg1M;
-            tmpMy = dArg2M;
+            tmpMx = arg1M; //dArg1M;
+            tmpMy = arg2M; //dArg2M;
         } else if (tmpC > 0) {
             Integer tmp = -absoluteValue(arg1C,arg2C);
-            tmpMx = dArg1M;
-            tmpMy = dArg2M*(pow(p,tmp));
+            tmpMx = arg1M; //dArg1M;
+            tmpMy = arg2M*(pow(p,tmp));     //dArg2M;
         } else if (tmpC < 0) {
             Integer tmp = -absoluteValue(arg1C,arg2C);
 
-            tmpMx =  dArg1M *(pow(p,tmp));
-            tmpMy = dArg2M;
+            tmpMx =  arg1M *(pow(p,tmp));     //dArg1M;
+            tmpMy = arg2M; //dArg2M;
         }
 
         if(type.compareTo(Types.ADDITION) == 0){
@@ -63,14 +63,15 @@ public class Arithmetic {
                     + String.valueOf(cZ);
 
         }
-        getMantissaAndExponent(solution);
+        solution = getMantissaAndExponent(solution);
         Result result = new Result(solution);
-        result.setStep_1("a");
-        result.setStep_1("b");
-        result.setStep_3("c");
-        result.setStep_4("b");
 
-        result = resultRepository.save(result);
+        //result.setStep_1("a");
+        //result.setStep_1("b");
+        //result.setStep_3("c");
+        //result.setStep_4("b");
+
+        //result = resultRepository.save(result);
         return result;
     }
 
@@ -84,7 +85,7 @@ public class Arithmetic {
         Integer cZ = arg1C + arg2C;
         solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                 + String.valueOf(cZ);
-        getMantissaAndExponent(solution);
+        solution = getMantissaAndExponent(solution);
         Result result = new Result(solution);
         result.setStep_1("a");
         result.setStep_1("b");
