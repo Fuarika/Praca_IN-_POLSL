@@ -10,6 +10,9 @@ import java.time.LocalDate;
 @Data
 public class BaseEntity implements Serializable{
 
+    //@SequenceGenerator(name="id_sequence",sequenceName="oracle_seq")
+    //    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @GeneratedValue
     @Column(name = "ID")

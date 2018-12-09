@@ -32,7 +32,6 @@ VALUES (nextval('id_sequence'), current_date, current_date, 1, 'ADDITION', 'DOD2
 COMMIT;
 
 SELECT * FROM EXERCISE;
-OUTER JOIN
 DROP SEQUENCE id_sequence;
 
 --    ADDITION("Dodawanie", "+"),
