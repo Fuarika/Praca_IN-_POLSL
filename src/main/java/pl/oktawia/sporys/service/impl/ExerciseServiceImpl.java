@@ -23,9 +23,6 @@ import java.util.stream.Collectors;
 public class ExerciseServiceImpl implements ExerciseService {
 
     @Autowired
-    ExerciseDao exerciseDao;
-
-    @Autowired
     ResultRepository resultRepository;
 
     @Autowired
@@ -35,12 +32,14 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Override
     public Exercise getById(Integer id) {
-        return exerciseDao.getById(id);
+        return exerciseRepository.findById(id)
+                .orElseThrow(()->new IllegalArgumentException("Cant find exercises by category with id" + id));
     }
 
     @Override
-    public Exercise getByCategoryId(Long categoryId) {
-        return exerciseDao.getByCategoryId(categoryId);
+    public Exercise getByCategoryId(Types type) {
+        return exerciseRepository.findByType(type)
+                .orElseThrow(()->new IllegalArgumentException("Cant find exercises by type " + type.getName()));
     }
 
     @Override
@@ -56,7 +55,8 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Override
     public List<Exercise> getAll() {
-        return exerciseDao.getAll(Exercise.class);
+        return exerciseRepository.getAllByIdNotNull()
+                .orElseThrow(()->new IllegalArgumentException("No exercises in database"));
     }
 
     private List<Exercise> filterForType(Types type, List<Exercise> exercises) {
@@ -68,6 +68,14 @@ public class ExerciseServiceImpl implements ExerciseService {
     public Exercise getRandomExercise(List<Exercise> exercises) {
         Exercise ex = exercises.get(random.nextInt(exercises.size()));
         return ex;
+    }
+
+    @Override
+    public void addExercise(Result result) {
+        Exercise exercise = new Exercise(result);
+        exerciseRepository.save(exercise);
+        //exercise.
+
     }
 
 }

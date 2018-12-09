@@ -5,12 +5,6 @@ import pl.oktawia.sporys.enums.Types;
 
 import javax.persistence.*;
 
-
-
-@NamedQueries(value = {
-        @NamedQuery(name = Exercise.GET_BY_ID, query = "SELECT e FROM Exercise e WHERE e.type like :ID")
-//        @NamedQuery(name = Exercise.GET_BY_CATEGORY_ID, query="SELECT e FROM Exercise e WHERE e.categoryId like :CATEGORY_ID")
-})
 @Entity
 @Table(name = "EXERCISE")
 @Data
@@ -19,6 +13,13 @@ public class Exercise  extends BaseEntity {
     public static final String GET_BY_ID = "getById";
     public static final String GET_BY_CATEGORY_ID = "getByCategoryID";
     public static final String GET_BY_RESULT_ID = "getByResultID";
+
+    public Exercise(Result result) {
+        this.result = result;
+    }
+
+    public Exercise() {
+    }
 
     @Column(name = "TYPE", nullable = false)
     @Enumerated(EnumType.STRING)

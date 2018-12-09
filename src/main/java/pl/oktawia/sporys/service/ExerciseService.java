@@ -9,9 +9,10 @@ import java.util.List;
 public interface ExerciseService {
 
     Exercise getById(Integer id);
-    Exercise getByCategoryId(Long categoryId);
+    Exercise getByCategoryId(Types type);
     Result getByResultId(Long resultId);
     List<Exercise> getAllExercisesByType(Types type);
     List<Exercise> getAll();
     Exercise getRandomExercise(List<Exercise> exercises);
+    void addExercise(Result result);
 }

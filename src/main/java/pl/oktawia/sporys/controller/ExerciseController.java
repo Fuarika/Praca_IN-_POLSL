@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.oktawia.sporys.algorithm.Arithmetic;
 import pl.oktawia.sporys.enums.Types;
@@ -13,6 +14,7 @@ import pl.oktawia.sporys.request.ExerciseRequest;
 import pl.oktawia.sporys.service.ExerciseService;
 import pl.oktawia.sporys.service.ResultService;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -74,12 +76,22 @@ public class ExerciseController {
     public String chooseTest(Model model) {
         LinkedList<Exercise> test= new LinkedList<>();
         List<Exercise> exercises = exerciseService.getAll();
-        while (test.size() < 5){
-           Exercise ex = exerciseService.getRandomExercise(exercises);
+        for(Exercise ex: exercises) {
+            ex = exerciseService.getRandomExercise(exercises);
             if (!test.contains(ex)){
                 test.add(ex);
             }
+
+            if (test.size() >= 5) {
+                break;
+            }
         }
+//        while (test.size() < 5){
+//           Exercise ex = exerciseService.getRandomExercise(exercises);
+//            if (!test.contains(ex)){
+//                test.add(ex);
+//            }
+//        }
         if (test.isEmpty()) {
             return NOTHING;
         }
@@ -89,14 +101,14 @@ public class ExerciseController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/addNewExercise")
     public String addExerciseForm(Model model){
-        Exercise ex = new Exercise();
-        model.addAttribute("exerciseForm", ex);
+        Exercise exerciseForm = new Exercise();
+        model.addAttribute("exerciseForm", exerciseForm);
         return "addNewExercise";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/addNewExercise")
-    public @ResponseBody String addExerciseSave(Model model,
-                                    @RequestParam(required=false, name="exerciseForm") Exercise exerciseForm) {
+    @ResponseBody
+    public String addExerciseSave(Model model, @Valid @ModelAttribute Exercise exerciseForm){
 
        String arg1_m = exerciseForm.getMantiseArg1();
        String arg1_c = exerciseForm.getCellingArg1();
@@ -105,38 +117,45 @@ public class ExerciseController {
        Types type = exerciseForm.getType();
        int p = 10;
 
-       if(arg1_m != null && arg1_m.length() > 0 && arg1_c != null && arg1_c.length() > 0
-               && arg2_m != null && arg2_m.length() > 0 && arg2_c != null && arg2_c.length() > 0){
 
-           if(arg1_m.matches("[-+]?[0-9]*\\.?[0-9]+") && arg2_m.matches("[-+]?[0-9]*\\.?[0-9]+")
+       if(arg1_m != null && arg1_m.length() > 0 && arg1_c != null && arg1_c.length() > 0 &&
+               arg2_m != null && arg2_m.length() > 0 && arg2_c != null && arg2_c.length() > 0)
+           if (arg1_m.matches("[-+]?[0-9]*\\.?[0-9]+") && arg2_m.matches("[-+]?[0-9]*\\.?[0-9]+")
                    && arg1_c.matches("[-+]?[0-9]") && arg2_c.matches("[-+]?[0-9]")) {
 
-                if(type.compareTo(Types.ADDITION) == 0 || type.compareTo(Types.SUBTRATION) == 0 ){
-
-                  // Integer resultId = Arithmetic.addOrSubFloatingPoint(type, arg1_m, arg1_c, arg2_m,arg2_c, p);
-
-                }else if (type.compareTo(Types.MULTIPLICATION) == 0){
-
-
-
-                }else if (type.compareTo(Types.DIVISION) == 0){
+               if (type.compareTo(Types.ADDITION) == 0 || type.compareTo(Types.SUBTRATION) == 0) {
+                   Arithmetic calculate = new Arithmetic();
+                   Result result = calculate.addOrSubFloatingPoint(type, arg1_m, Integer.valueOf(arg1_c), arg2_m,
+                           Integer.valueOf(arg2_c), p);
+                   exerciseService.addExercise(result);
 
 
+               } else if (type.compareTo(Types.MULTIPLICATION) == 0) {
 
-                }
-               Exercise exerciseNew = new Exercise();
-                // dodanie nowego zadania podajac dane :D
+                   Arithmetic calculate = new Arithmetic();
+                   Result result = calculate.multiplicatonFlatingPoint(arg1_m, Integer.valueOf(arg1_c), arg2_m,
+                           Integer.valueOf(arg2_c), p);
+                   exerciseService.addExercise(result);
 
-           }else {
+               } else if (type.compareTo(Types.DIVISION) == 0) {
+
+                   Arithmetic calculate = new Arithmetic();
+                   Result result = calculate.divisionFlatingPoint(arg1_m, Integer.valueOf(arg1_c), arg2_m,
+                           Integer.valueOf(arg2_c), p);
+                   exerciseService.addExercise(result);
+
+               }
+
+
+           } else {
                return "to nie są liczby";
            }
-
-       }else {
-           return "nie sa wypelnione pola poprawnie,sprawdz jeszcze raz";
+       else {
+           return "Pola są wypełnione nie poprawnie!! sprawdz i spróbuj jeszcz raz";
        }
 
 
-        return "aaa";
+        return "redirect:/addNewExercise";
 
     }
 

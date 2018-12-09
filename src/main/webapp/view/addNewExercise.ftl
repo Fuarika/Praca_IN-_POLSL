@@ -28,7 +28,7 @@
         <hr>
 
             <br />
-            <form name="exercise" action="" method="POST">
+            <form name="exerciseForm" action="addNewExercise.ftl" method="POST">
                 X =
                 <input id="arg1_m" type="text" name="arg1_m" size="6" maxlength"6" />
                 o 10^

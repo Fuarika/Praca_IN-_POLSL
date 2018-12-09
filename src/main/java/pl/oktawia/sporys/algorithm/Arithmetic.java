@@ -1,18 +1,20 @@
 package pl.oktawia.sporys.algorithm;
 
+import lombok.extern.slf4j.Slf4j;
 import pl.oktawia.sporys.enums.Types;
 import pl.oktawia.sporys.model.Exercise;
+import pl.oktawia.sporys.model.Result;
 import pl.oktawia.sporys.repository.ResultRepository;
 
 import static java.lang.Math.max;
 import static java.lang.StrictMath.pow;
 
-
+@Slf4j
 public class Arithmetic {
 
     private Double tmpMy;
     private Double tmpMx;
-    private String z;
+    private String solution;
 
 
     ResultRepository resultRepository;
@@ -25,8 +27,8 @@ public class Arithmetic {
         } else
             return -tmp;
     }
-    public Integer addOrSubFloatingPoint( Types type, String arg1M, Integer arg1C,
-                                                      String arg2M, Integer arg2C, Integer p ) {
+    public Result addOrSubFloatingPoint(Types type, String arg1M, Integer arg1C,
+                                        String arg2M, Integer arg2C, Integer p ) {
 
         Double dArg1M = Double.valueOf(arg1M);
         Double dArg2M = Double.valueOf(arg2M);
@@ -51,47 +53,69 @@ public class Arithmetic {
         if(type.compareTo(Types.ADDITION) == 0){
             Double mZ = tmpMx + tmpMy;
             Integer cZ = max(arg1C,arg2C);
-            z = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
+            solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                     + String.valueOf(cZ);
 
         }else if (type.compareTo(Types.SUBTRATION) == 0){
             Double mZ = tmpMx - tmpMy;
             Integer cZ = max(arg1C,arg2C);
-            z = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
+            solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                     + String.valueOf(cZ);
 
         }
+        getMantissaAndExponent(solution);
+        Result result = new Result(solution);
+        result.setStep_1("a");
+        result.setStep_1("b");
+        result.setStep_3("c");
+        result.setStep_4("b");
 
-        resultRepository.insertResult(z, "a" , "b","c", "d"); // dodaje i wzraca numer id powstalego rezulta
-        return 23; // wzraca numer id resulta?
+        result = resultRepository.save(result);
+        return result;
     }
 
 
-    public String multiplicatonFlatingPoint(String arg1M, Integer arg1C, String arg2M, Integer arg2C, Integer p) {
+    public Result multiplicatonFlatingPoint(String arg1M, Integer arg1C, String arg2M, Integer arg2C, Integer p) {
 
         Double dArg1M = Double.valueOf(arg1M);
         Double dArg2M = Double.valueOf(arg2M);
 
         Double mZ = dArg1M * dArg2M;
         Integer cZ = arg1C + arg2C;
-        z = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
+        solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                 + String.valueOf(cZ);
-        return z;
+        getMantissaAndExponent(solution);
+        Result result = new Result(solution);
+        result.setStep_1("a");
+        result.setStep_1("b");
+        result.setStep_3("c");
+        result.setStep_4("b");
+
+        result = resultRepository.save(result);
+        return result;
     }
 
-    public String divisionFlatingPoint(String arg1M, Integer arg1C, String arg2M, Integer arg2C, Integer p) {
+    public Result divisionFlatingPoint(String arg1M, Integer arg1C, String arg2M, Integer arg2C, Integer p) {
 
         Double dArg1M = Double.valueOf(arg1M);
         Double dArg2M = Double.valueOf(arg2M);
 
         Double mZ = dArg1M / dArg2M;
         Integer cZ = arg1C - arg2C;
-        z = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
+        solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                 + String.valueOf(cZ);
-        return z;
+
+        Result result = new Result(solution);
+        result.setStep_1("a");
+        result.setStep_1("b");
+        result.setStep_3("c");
+        result.setStep_4("b");
+        getMantissaAndExponent(solution);
+        result = resultRepository.save(result);
+        return result;
     }
 
-    public String normalize(String s) {
+    /* public String normalize(String s) {
         String tmpS = s.substring(1,4);
         char[] tmpCh = tmpS.toCharArray();
         Integer count = 0;
@@ -105,5 +129,22 @@ public class Arithmetic {
 
 
         return null;
+    } */
+
+    String getMantissaAndExponent(String str) {
+        String solution = null;
+        try {
+            double testedFloatNumber = Double.parseDouble(str);
+            int expo = Math.getExponent(testedFloatNumber);
+            int numericSystemBase = 10;
+            double mantissa = testedFloatNumber / Math.pow(numericSystemBase,expo);
+            double exponentForFloatingPointNumber = Double.sum(Double.valueOf(String.valueOf(mantissa).split("E")[1]), expo);
+
+            solution =  String.valueOf(mantissa).split("E")[0] + "E" + exponentForFloatingPointNumber;
+            return solution;
+        } catch (NumberFormatException e) {
+            log.error("Cannot parse to double " + str, e);
+        }
+        return solution;
     }
 }

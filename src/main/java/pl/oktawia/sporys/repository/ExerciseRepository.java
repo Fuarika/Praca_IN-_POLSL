@@ -10,6 +10,8 @@ import java.util.Optional;
 
 public interface ExerciseRepository extends CrudRepository<Exercise, Long> {
 
-    Exercise findById(int id);
+    Optional<Exercise> findById(int id);
+    Optional<Exercise> findByType(Types types);
     Optional<List<Exercise>> findAllByType(Types type);
+    Optional<List<Exercise>> getAllByIdNotNull();
 }
