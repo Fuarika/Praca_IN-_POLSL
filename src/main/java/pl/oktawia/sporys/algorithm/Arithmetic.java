@@ -1,10 +1,12 @@
 package pl.oktawia.sporys.algorithm;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import pl.oktawia.sporys.enums.Types;
 import pl.oktawia.sporys.model.Exercise;
 import pl.oktawia.sporys.model.Result;
 import pl.oktawia.sporys.repository.ResultRepository;
+import pl.oktawia.sporys.service.ResultService;
 
 import static java.lang.Math.max;
 import static java.lang.StrictMath.pow;
@@ -16,8 +18,8 @@ public class Arithmetic {
     private Double tmpMx;
     private String solution;
 
-
-    ResultRepository resultRepository;
+   @Autowired
+   ResultRepository resultRepository;
 
     private Integer absoluteValue(Integer arg1C, Integer arg2C) {
         Integer tmp = arg1C - arg2C;
@@ -63,15 +65,19 @@ public class Arithmetic {
                     + String.valueOf(cZ);
 
         }
-        solution = getMantissaAndExponent(solution);
+        //solution = getMantissaAndExponent(solution);
         Result result = new Result(solution);
+
+
+
+
 
         //result.setStep_1("a");
         //result.setStep_1("b");
         //result.setStep_3("c");
         //result.setStep_4("b");
 
-        //result = resultRepository.save(result);
+        result = resultRepository.save(result);
         return result;
     }
 
@@ -92,7 +98,7 @@ public class Arithmetic {
         result.setStep_3("c");
         result.setStep_4("b");
 
-        result = resultRepository.save(result);
+        //result = resultRepository.save(result);
         return result;
     }
 
@@ -112,7 +118,7 @@ public class Arithmetic {
         result.setStep_3("c");
         result.setStep_4("b");
         getMantissaAndExponent(solution);
-        result = resultRepository.save(result);
+        //result = resultRepository.save(result);
         return result;
     }
 

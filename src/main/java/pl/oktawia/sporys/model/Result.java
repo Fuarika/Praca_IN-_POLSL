@@ -36,6 +36,10 @@ public class Result extends BaseEntity {
         this.version = getVersion();
 
         this.answer = answer;
+        this.step_1 = "qqq";
+        this.step_2 = "qqq";
+        this.step_3 = "qqq";
+        this.step_4 = "qqq";
     }
     public Result(){}
 
