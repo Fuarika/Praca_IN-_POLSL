@@ -65,7 +65,7 @@ public class Arithmetic {
                     + String.valueOf(cZ);
 
         }
-        //solution = getMantissaAndExponent(solution);
+        solution = getMantissaAndExponent(solution);
         Result result = new Result(solution);
 
 
