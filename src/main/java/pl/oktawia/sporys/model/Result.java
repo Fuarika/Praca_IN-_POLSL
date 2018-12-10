@@ -19,9 +19,9 @@ public class Result extends BaseEntity {
     public Result(String answer, String step_1, String step_2, String step_3, String step_4) {
 
         this.id = getId();
-        this.creationDate = getCreationDate();
-        this.modiftDate = getModiftDate();
-        this.version = getVersion();
+        setCreationDate(creationDate.now());
+        setModiftDate(modiftDate.now());
+        setVersion(Long.valueOf(1));
 
         this.answer = answer;
         this.step_1 = step_1;

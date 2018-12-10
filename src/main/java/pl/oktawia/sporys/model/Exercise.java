@@ -25,8 +25,8 @@ public class Exercise  extends BaseEntity {
                     Integer arg2C, Integer base, Result result) {
 
         this.id = getId();
-        setCreationDate(creationDate);
-        setModiftDate(modiftDate);
+        setCreationDate(creationDate.now());
+        setModiftDate(modiftDate.now());
         setVersion(Long.valueOf(1));
 
         this.type = type;
