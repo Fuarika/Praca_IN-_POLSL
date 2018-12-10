@@ -7,5 +7,5 @@ public interface ResultService {
 
     //Result getByExerciseId(Long exerciseId);
 
-    //void addResult(String answer);
+    Result addResult(Result result);
 }

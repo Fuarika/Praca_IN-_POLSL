@@ -130,6 +130,14 @@ public class ExerciseController {
                    Arithmetic calculate = new Arithmetic();
                    Result result = calculate.addOrSubFloatingPoint(type, arg1_m, arg1_c, arg2_m,
                            arg2_c, p);
+                   //Result result = new Result();
+                   //result.setAnswer("tutaj niby ma byc data");
+                  // result.setStep_1("baka");
+                   //result.setStep_2("baka3");
+                   //result.setStep_3("baka3");
+                   //result.setStep_4("baka3");
+
+                   resultService.addResult(result);
                    exerciseService.addExercise(type, "aaa" ,Double.valueOf(arg1_m),Integer.valueOf(arg1_c),
                            Double.valueOf(arg1_m),Integer.valueOf(arg2_c), p,result);
 

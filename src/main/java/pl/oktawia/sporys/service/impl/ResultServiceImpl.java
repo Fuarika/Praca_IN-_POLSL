@@ -10,8 +10,14 @@ import pl.oktawia.sporys.service.ResultService;
 @Service
 public class ResultServiceImpl implements ResultService {
 
-   // @Autowired
-   // ResultRepository resultRepository;
+    @Autowired
+    ResultRepository resultRepository;
+
+    @Override
+    public Result addResult(Result result){
+        return resultRepository.save(result);
+
+    }
 
 
 }

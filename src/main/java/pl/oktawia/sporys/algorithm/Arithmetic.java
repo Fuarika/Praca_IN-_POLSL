@@ -65,19 +65,19 @@ public class Arithmetic {
                     + String.valueOf(cZ);
 
         }
-        solution = getMantissaAndExponent(solution);
-        Result result = new Result(solution);
+        //String normalized = getMantissaAndExponent(solution);
 
 
+        Result result = new Result();
+        result.setAnswer(solution);
+        result.setStep_1("z aretmic");
+        result.setStep_2("baka3");
+        result.setStep_3("baka3");
+        result.setStep_4("baka3");
 
 
+        //resultRepository.save(result);
 
-        //result.setStep_1("a");
-        //result.setStep_1("b");
-        //result.setStep_3("c");
-        //result.setStep_4("b");
-
-        result = resultRepository.save(result);
         return result;
     }
 
@@ -91,7 +91,7 @@ public class Arithmetic {
         Integer cZ = arg1C + arg2C;
         solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                 + String.valueOf(cZ);
-        solution = getMantissaAndExponent(solution);
+        //solution = getMantissaAndExponent(solution);
         Result result = new Result(solution);
         result.setStep_1("a");
         result.setStep_1("b");
