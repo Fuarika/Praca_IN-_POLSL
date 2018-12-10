@@ -57,14 +57,24 @@ public class Arithmetic {
             Integer cZ = max(arg1C,arg2C);
             solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                     + String.valueOf(cZ);
+            if (mZ > 0 || mZ <= 0.01){
+                solution = getMantissaAndExponent(solution);
+            }
+
 
         }else if (type.compareTo(Types.SUBTRATION) == 0){
             Double mZ = tmpMx - tmpMy;
             Integer cZ = max(arg1C,arg2C);
             solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                     + String.valueOf(cZ);
+            if (mZ > 0 || mZ <= 0.01){
+                solution = getMantissaAndExponent(solution);
+            }
 
         }
+
+
+
        // String normalized = getMantissaAndExponent(solution);
 
 
@@ -74,9 +84,6 @@ public class Arithmetic {
         result.setStep_2("baka3");
         result.setStep_3("baka3");
         result.setStep_4("baka3");
-
-
-        //resultRepository.save(result);
 
         return result;
     }
@@ -91,14 +98,16 @@ public class Arithmetic {
         Integer cZ = arg1C + arg2C;
         solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                 + String.valueOf(cZ);
-        //solution = getMantissaAndExponent(solution);
+
+        if (mZ > 0 || mZ <= 0.01){
+            solution = getMantissaAndExponent(solution);
+        }
         Result result = new Result(solution);
         result.setStep_1("a");
         result.setStep_1("b");
         result.setStep_3("c");
         result.setStep_4("b");
 
-        //result = resultRepository.save(result);
         return result;
     }
 
@@ -111,14 +120,14 @@ public class Arithmetic {
         Integer cZ = arg1C - arg2C;
         solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                 + String.valueOf(cZ);
-
+        if (mZ > 0 || mZ <= 0.01){
+            solution = getMantissaAndExponent(solution);
+        }
         Result result = new Result(solution);
         result.setStep_1("a");
         result.setStep_1("b");
         result.setStep_3("c");
         result.setStep_4("b");
-        getMantissaAndExponent(solution);
-        //result = resultRepository.save(result);
         return result;
     }
 

@@ -31,9 +31,9 @@ public class Result extends BaseEntity {
     }
     public Result(String answer) {
         this.id = getId();
-        this.creationDate = getCreationDate();
-        this.modiftDate = getModiftDate();
-        this.version = getVersion();
+        setCreationDate(creationDate.now());
+        setModiftDate(modiftDate.now());
+        setVersion(Long.valueOf(1));
 
         this.answer = answer;
 

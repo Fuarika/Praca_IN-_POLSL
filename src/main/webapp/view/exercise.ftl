@@ -41,7 +41,12 @@
                             ${exercise.result.answer}
                         <button id="button_${exercise.id}" onclick="checkSolution('${exercise.result.answer}',document.getElementById('exe_${exercise.id}').value, '${exercise.id}', '${exercise.result.id}' )">Sprawdź</button>
                         <button id= "buttonShow_${exercise.result.id}" type="submit" onclick="myFunction('answer_${exercise.result.id}')" hidden ="true">Pokarz rozwiązanie</button>
-                        <div id="answer_${exercise.result.id}" style="display:none;">tu winno byc step by step</div>
+                        <div id="answer_${exercise.result.id}" style="display:none;">
+                                ${exercise.result.step_1}<br/>
+                                ${exercise.result.step_2}<br/>
+                                ${exercise.result.step_3}<br/>
+                                ${exercise.result.step_4}<br/>
+                        </div>
 
                     <hr>
                 </#list>
