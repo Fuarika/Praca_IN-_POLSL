@@ -34,4 +34,24 @@ class ArithmeticTest implements WithAssertions {
         assertThat(solution2.split("E")[0]).isEqualTo("1.25"); //mantissa 2
 
     }
+
+    @Test
+    void test1() {
+        double mantissa = 10.6342d;
+        String string = Double.toString(mantissa);
+        String[] stringVal = string.split("\\.");
+        if (stringVal[0].length() > 1) {
+            String[] decimal = stringVal[0].split("");
+            String newDecimal = decimal[0];
+            String rest = "";
+            int exponant = 0;
+            for (int i =1; i < decimal.length; i++) {
+                rest += decimal[i];
+                exponant = i;
+            }
+            String normalizedDown = newDecimal + "." + rest + stringVal[1] + " * 10 ^" + exponant;
+
+            System.out.println(normalizedDown);
+        }
+    }
 }

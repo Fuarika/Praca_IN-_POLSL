@@ -70,4 +70,6 @@ public class Exercise  extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "result_fk")
     private Result result;
+
+
 }

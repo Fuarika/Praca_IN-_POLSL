@@ -38,7 +38,9 @@ public class Result extends BaseEntity {
         this.answer = answer;
 
     }
-    public Result(){}
+    public Result(){
+
+    }
 
     @Column(name = "ANSWER", nullable = false)
     private String answer;

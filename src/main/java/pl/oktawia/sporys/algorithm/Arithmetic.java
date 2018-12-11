@@ -57,9 +57,9 @@ public class Arithmetic {
             Integer cZ = max(arg1C,arg2C);
             solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                     + String.valueOf(cZ);
-            if (mZ > 0 || mZ <= 0.01){
-                solution = getMantissaAndExponent(solution);
-            }
+
+                solution = test1(mZ,cZ);
+
 
 
         }else if (type.compareTo(Types.SUBTRATION) == 0){
@@ -67,9 +67,9 @@ public class Arithmetic {
             Integer cZ = max(arg1C,arg2C);
             solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                     + String.valueOf(cZ);
-            if (mZ > 0 || mZ <= 0.01){
-                solution = getMantissaAndExponent(solution);
-            }
+            //if (mZ > 0 || mZ <= 0.01){
+              //  solution = getMantissaAndExponent(solution);
+           // }
 
         }
 
@@ -89,43 +89,45 @@ public class Arithmetic {
     }
 
 
-    public Result multiplicatonFlatingPoint(String arg1M, Integer arg1C, String arg2M, Integer arg2C, Integer p) {
+    public Result multiplicatonFlatingPoint(Double arg1M, Integer arg1C, Double arg2M, Integer arg2C, Integer p) {
 
-        Double dArg1M = Double.valueOf(arg1M);
-        Double dArg2M = Double.valueOf(arg2M);
+        //Double dArg1M = Double.valueOf(arg1M);
+        //Double dArg2M = Double.valueOf(arg2M);
 
-        Double mZ = dArg1M * dArg2M;
+        Double mZ = arg1M * arg2M;
         Integer cZ = arg1C + arg2C;
         solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                 + String.valueOf(cZ);
 
-        if (mZ > 0 || mZ <= 0.01){
-            solution = getMantissaAndExponent(solution);
-        }
-        Result result = new Result(solution);
-        result.setStep_1("a");
-        result.setStep_1("b");
+        //if (mZ > 0 || mZ <= 0.01){
+        //    solution = getMantissaAndExponent(solution);
+       // }
+        Result result = new Result();
+        result.setAnswer(solution);
+        result.setStep_1("mnoz");
+        result.setStep_2("b");
         result.setStep_3("c");
         result.setStep_4("b");
 
         return result;
     }
 
-    public Result divisionFlatingPoint(String arg1M, Integer arg1C, String arg2M, Integer arg2C, Integer p) {
+    public Result divisionFlatingPoint(Double arg1M, Integer arg1C, Double arg2M, Integer arg2C, Integer p) {
 
-        Double dArg1M = Double.valueOf(arg1M);
-        Double dArg2M = Double.valueOf(arg2M);
+        //Double dArg1M = Double.valueOf(arg1M);
+        //Double dArg2M = Double.valueOf(arg2M);
 
-        Double mZ = dArg1M / dArg2M;
+        Double mZ = arg1M / arg2M;
         Integer cZ = arg1C - arg2C;
         solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                 + String.valueOf(cZ);
-        if (mZ > 0 || mZ <= 0.01){
-            solution = getMantissaAndExponent(solution);
-        }
-        Result result = new Result(solution);
-        result.setStep_1("a");
-        result.setStep_1("b");
+        //if (mZ > 0 || mZ <= 0.01){
+        //    solution = getMantissaAndExponent(solution);
+       // }
+        Result result = new Result();
+        result.setAnswer(solution);
+        result.setStep_1("dziel");
+        result.setStep_2("b");
         result.setStep_3("c");
         result.setStep_4("b");
         return result;
@@ -162,5 +164,41 @@ public class Arithmetic {
             log.error("Cannot parse to double " + str, e);
         }
         return solution;
+    }
+
+    public String test1(Double mantissa, Integer exponant) {
+        //double mantissa = 10.6342d;
+        String string = Double.toString(mantissa);
+        String[] stringVal = string.split("\\.");
+
+        if (stringVal[0].length() > 1) {
+            if(stringVal[0].matches("-")){
+                String[] decimal = stringVal[1].split("");
+                String newDecimal = decimal[1];
+                String rest = "";
+                int exp = 0;
+                for (int i =1; i < decimal.length; i++) {
+                    rest += decimal[i];
+                    exp = i;
+                }
+                exponant += exp;
+                String normalizedDown = "-" + newDecimal + "." + rest + stringVal[1] + " x 10 ^" + exponant;
+                return normalizedDown;
+            }else {
+                String[] decimal = stringVal[0].split("");
+                String newDecimal = decimal[0];
+                String rest = "";
+                int exp = 0;
+                for (int i = 1; i < decimal.length; i++) {
+                    rest += decimal[i];
+                    exp = i;
+                }
+                exponant += exp;
+                String normalizedDown = newDecimal + "." + rest + stringVal[1] + " * 10 ^" + exponant;
+                return normalizedDown;
+                //System.out.println(normalizedDown);
+            }
+        } else {return mantissa + "x10^" + exponant;}
+
     }
 }

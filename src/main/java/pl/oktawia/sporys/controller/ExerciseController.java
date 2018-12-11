@@ -17,6 +17,7 @@ import pl.oktawia.sporys.service.ResultService;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -111,72 +112,87 @@ public class ExerciseController {
     @RequestMapping(method = RequestMethod.POST, value = {"/addNewExercise"})
     @ResponseBody
     public String addExerciseSave(Model model, @Valid @ModelAttribute("exerciseForm") Exercise exerciseForm){
-        Model types = model.addAttribute("types", Types.values());
+
 
         try{
-            Double arg1_m = exerciseForm.getMantiseArg1();
-            Integer arg1_c = exerciseForm.getCellingArg1();
-            Double arg2_m = exerciseForm.getMantiseArg2();
-            Integer arg2_c = exerciseForm.getCellingArg2();
-            Types type = Types.ADDITION;
+            String arg1_mS = String.valueOf(exerciseForm.getMantiseArg1());
+            String arg1_cS = String.valueOf(exerciseForm.getCellingArg1());
+            String arg2_mS = String.valueOf(exerciseForm.getMantiseArg2());
+            String arg2_cS =  String.valueOf(exerciseForm.getCellingArg2());
+            Types type = exerciseForm.getType();
             Integer p = 10;
 
             /// zamienilam stringi na typy nie zapomniec zmienic opocz type
 
-            //if(arg1_m != null && arg1_m.length() > 0 && arg1_c != null && arg1_c.length() > 0 &&
-            //     arg2_m != null && arg2_m.length() > 0 && arg2_c != null && arg2_c.length() > 0) {
 
 
-            // if (arg1_m.matches("[-+]?[0-9]*\\.?[0-9]+") && arg2_m.matches("[-+]?[0-9]*\\.?[0-9]+") &&
-            //    arg1_c.matches("[-+]?[0-9]") && arg2_c.matches("[-+]?[0-9]") ){
+            if (arg1_mS.matches("[-+]?[0-9]*\\.?[0-9]+") && arg2_mS.matches("[-+]?[0-9]*\\.?[0-9]+") &&
+                arg1_cS.matches("[-+]?[0-9]") && arg2_cS.matches("[-+]?[0-9]") ) {
 
-            if (type.compareTo(Types.ADDITION) == 0 || type.compareTo(Types.SUBTRATION) == 0) {
-                Arithmetic calculate = new Arithmetic();
-                Result result = calculate.addOrSubFloatingPoint(type, arg1_m, arg1_c, arg2_m,
-                        arg2_c, p);
-                //Result result = new Result();
-                //result.setAnswer("tutaj niby ma byc data");
-                // result.setStep_1("baka");
-                //result.setStep_2("baka3");
-                //result.setStep_3("baka3");
-                //result.setStep_4("baka3");
+                Double arg1_m = Double.parseDouble(arg1_mS);
+                Double arg2_m = Double.parseDouble(arg2_mS);
+                Integer arg1_c = Integer.parseInt(arg1_cS);
+                Integer arg2_c = Integer.parseInt(arg2_cS);
 
-                resultService.addResult(result);
-                exerciseService.addExercise(type, "aaa", Double.valueOf(arg1_m), Integer.valueOf(arg1_c),
-                        Double.valueOf(arg1_m), Integer.valueOf(arg2_c), p, result);
+                if (type.compareTo(Types.ADDITION) == 0 || type.compareTo(Types.SUBTRATION) == 0) {
+                    Arithmetic calculate = new Arithmetic();
+                    Result result = calculate.addOrSubFloatingPoint(type, arg1_m, arg1_c, arg2_m,
+                            arg2_c, p);
+                    String content;
+                    if (type.compareTo(Types.ADDITION) == 0) {
+                        content = "Oblicz równanie: X + Y<br/> " +
+                                "gdzie: X = " + arg1_m + " x 10^" + arg1_cS + " " + "Y = " + arg2_mS + " x 10^" + arg2_cS + "<br/>";
+                    } else {
+                        content = "Oblicz równanie: X - Y " +
+                                "gdzie: X = " + arg1_mS + " x 10^" + arg1_cS + " " + "Y = " + arg2_mS + " x 10^" + arg2_cS + "<br/>";
+                    }
+
+                    resultService.addResult(result);
+                    exerciseService.addExercise(type, content, arg1_m, arg1_c,
+                            arg2_m, arg2_c, p, result);
 
 
-            } else if (type.compareTo(Types.MULTIPLICATION) == 0) {
+                } else if (type.compareTo(Types.MULTIPLICATION) == 0) {
 
-                Arithmetic calculate = new Arithmetic();
-                //Result result = calculate.multiplicatonFlatingPoint(arg1_m, arg1_c, arg2_m,
-                //        arg2_c, p);
-                //exerciseService.addExercise(result);
+                    Arithmetic calculate = new Arithmetic();
+                    Result result = calculate.multiplicatonFlatingPoint(arg1_m, arg1_c, arg2_m,
+                            arg2_c, p);
 
-            } else if (type.compareTo(Types.DIVISION) == 0) {
+                    String content = "Oblicz równanie: X x Y<br/> " +
+                            "gdzie: X = " + arg1_m + " x 10^" + arg1_c + " " + "Y = " + arg2_m + " x 10^" + arg2_c + "<br/>";
 
-                Arithmetic calculate = new Arithmetic();
-                //Result result = calculate.divisionFlatingPoint(arg1_m, Integer.valueOf(arg1_c), arg2_m,
-                //        Integer.valueOf(arg2_c), p);
-                //exerciseService.addExercise(result);
+                    resultService.addResult(result);
+                    exerciseService.addExercise(type, content, arg1_m, arg1_c,
+                            arg2_m, arg2_c, p, result);
 
-            }
+                } else if (type.compareTo(Types.DIVISION) == 0) {
 
-        } catch (NumberFormatException | NullPointerException e){
-            return "o nie sa liczby wpisz zmienne jeszcze raz";
+                    Arithmetic calculate = new Arithmetic();
+                    Result result = calculate.divisionFlatingPoint(arg1_m, arg1_c,
+                            arg2_m, arg2_c, p);
+                    String content = "Oblicz równanie: X / Y <br/> " +
+                            "gdzie: X = " + arg1_m + " x 10^" + arg1_c + " " + "Y = " + arg2_m + " x 10^" + arg2_c + "<br/>";
+
+                    resultService.addResult(result);
+                    exerciseService.addExercise(type, content, arg1_m, arg1_c,
+                            arg2_m, arg2_c, p, result);
+
+                }
+            }else {return "nie sa liczby";}
+        } catch (NullPointerException | NumberFormatException e) {
+            return "pola bie sa wypełnione poprawnie";
         }
-           //} else {
-            //   return "to nie są liczby";
-          // }
-      // } else {
-         //  return "Pola są wypełnione nie poprawnie!! sprawdz i spróbuj jeszcz raz";
-      // }
+
 
 
         String error = "uzupelnij pola ";
         model.addAttribute("errorMessage", error);
-        return "addNewExercise";
+        return "/addNewExercise";
 
     }
-
+    @ModelAttribute("types")
+    public List<Types> typeOfExercise()
+    {
+        return Arrays.asList(Types.values());
+    }
 }
