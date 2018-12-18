@@ -197,14 +197,14 @@ public class Arithmetic {
 
     }
 
-    public Double absoluteValueMantissa (Double mantissa){
+    public Float absoluteValueMantissa (Double mantissa){
 
         if (mantissa >= 0) {
-            minus=false;
-            return mantissa;
+            minus = false;
+            return Float.parseFloat(String.valueOf(mantissa));
         } else {
-            minus =true;
-            return -mantissa;
+            minus = true;
+            return -Float.parseFloat(String.valueOf(mantissa));
         }
     }
 
@@ -212,12 +212,12 @@ public class Arithmetic {
         //Double mantissa = new Double(10.6342d);
         //Double mantissa2 = new Double(0.0042d);
 
-        Double mantisa = absoluteValueMantissa(mantissa);
-        int integerPart = Integer.valueOf(Double.toString(mantisa).split("\\.")[0]);
-        int decimalPart = Integer.parseInt(Double.toString(mantisa).split("\\.")[1]);
+        Float mantisa = absoluteValueMantissa(mantissa);
+        int integerPart = Integer.valueOf(Float.toString(mantisa).split("\\.")[0]);
+        int decimalPart = Integer.parseInt(Float.toString(mantisa).split("\\.")[1]);
 
         if (integerPart >= 1) {
-            String string = Double.toString(mantissa);
+            String string = Float.toString(mantisa);
             String[] stringVal = string.split("\\.");
             int exp = stringVal[0].length();
             BigDecimal newvalue = new BigDecimal(mantisa).movePointLeft(exp);
