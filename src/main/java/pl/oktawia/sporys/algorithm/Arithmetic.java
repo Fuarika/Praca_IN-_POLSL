@@ -8,6 +8,9 @@ import pl.oktawia.sporys.model.Result;
 import pl.oktawia.sporys.repository.ResultRepository;
 import pl.oktawia.sporys.service.ResultService;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+
 import static java.lang.Math.max;
 import static java.lang.StrictMath.pow;
 
@@ -17,6 +20,7 @@ public class Arithmetic {
     private Double tmpMy;
     private Double tmpMx;
     private String solution;
+    private boolean minus;
 
    @Autowired
    ResultRepository resultRepository;
@@ -55,10 +59,8 @@ public class Arithmetic {
         if(type.compareTo(Types.ADDITION) == 0){
             Double mZ = tmpMx + tmpMy;
             Integer cZ = max(arg1C,arg2C);
-            solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
-                    + String.valueOf(cZ);
 
-                solution = test1(mZ,cZ);
+                solution = newTest(mZ,cZ);
 
 
 
@@ -67,9 +69,7 @@ public class Arithmetic {
             Integer cZ = max(arg1C,arg2C);
             solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                     + String.valueOf(cZ);
-            //if (mZ > 0 || mZ <= 0.01){
-              //  solution = getMantissaAndExponent(solution);
-           // }
+
 
         }
 
@@ -99,9 +99,6 @@ public class Arithmetic {
         solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                 + String.valueOf(cZ);
 
-        //if (mZ > 0 || mZ <= 0.01){
-        //    solution = getMantissaAndExponent(solution);
-       // }
         Result result = new Result();
         result.setAnswer(solution);
         result.setStep_1("mnoz");
@@ -121,9 +118,7 @@ public class Arithmetic {
         Integer cZ = arg1C - arg2C;
         solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
                 + String.valueOf(cZ);
-        //if (mZ > 0 || mZ <= 0.01){
-        //    solution = getMantissaAndExponent(solution);
-       // }
+
         Result result = new Result();
         result.setAnswer(solution);
         result.setStep_1("dziel");
@@ -200,5 +195,52 @@ public class Arithmetic {
             }
         } else {return mantissa + "x10^" + exponant;}
 
+    }
+
+    public Double absoluteValueMantissa (Double mantissa){
+
+        if (mantissa >= 0) {
+            minus=false;
+            return mantissa;
+        } else {
+            minus =true;
+            return -mantissa;
+        }
+    }
+
+    public String newTest (Double mantissa, int exponant) {
+        //Double mantissa = new Double(10.6342d);
+        //Double mantissa2 = new Double(0.0042d);
+
+        Double mantisa = absoluteValueMantissa(mantissa);
+        int integerPart = Integer.valueOf(Double.toString(mantisa).split("\\.")[0]);
+        int decimalPart = Integer.parseInt(Double.toString(mantisa).split("\\.")[1]);
+
+        if (integerPart >= 1) {
+            String string = Double.toString(mantissa);
+            String[] stringVal = string.split("\\.");
+            int exp = stringVal[0].length();
+            BigDecimal newvalue = new BigDecimal(mantisa).movePointLeft(exp);
+            double testedFloatNumber = newvalue.round(MathContext.DECIMAL32).doubleValue();
+            int newExpo = exp + exponant;
+            if (minus == true){
+                return -testedFloatNumber + "x10^" + newExpo;
+            }else {return testedFloatNumber + "x10^" + newExpo;}
+
+        } else {
+            int decimalLength = Double.toString(mantissa).split("\\.")[1].length();
+            int exp = Integer.toString(decimalPart).length() - decimalLength;
+            BigDecimal newvalue = new BigDecimal(mantisa).movePointLeft(exp);
+
+            if (minus == true){
+
+            }
+            double testedFloatNumber = newvalue.round(MathContext.DECIMAL32).doubleValue();
+            int newExpo = exponant - exp;
+            if (minus == true){
+                return -testedFloatNumber + "x10^" + newExpo;
+            }else {return testedFloatNumber + "x10^" + newExpo;}
+
+        }
     }
 }

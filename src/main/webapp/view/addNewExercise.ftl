@@ -1,5 +1,7 @@
 <#import "/spring.ftl" as spring/>
 
+<#assign htmlEscape = true in spring>
+
 <html lang="pl">
 <head>
     <meta charset="utf-8" />
@@ -43,7 +45,8 @@
                 <p style="font-size:10px"> Y = My o p^Cy</p>
                 Wpisz rodzaj działania:
                 <br />
-                <@spring.formInput "exerciseForm.type" "" "text" />
+                <#-- <@spring.bind "exerciseForm.type"/>
+                <@spring.formSingleSelect "exerciseForm.type" type " " /> -->
                 <br />
             <br />
             <button id="buttonAdd" type="submit" style="width: 200px;">Dodaj</button>

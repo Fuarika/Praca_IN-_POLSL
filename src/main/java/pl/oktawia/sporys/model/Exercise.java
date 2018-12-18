@@ -72,4 +72,5 @@ public class Exercise  extends BaseEntity {
     private Result result;
 
 
+
 }

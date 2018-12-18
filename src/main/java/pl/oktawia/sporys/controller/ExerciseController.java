@@ -104,8 +104,9 @@ public class ExerciseController {
     @RequestMapping(method = RequestMethod.GET, value = "/addNewExercise")
     public String addExerciseForm(Model model){
         Exercise exerciseForm = new Exercise();
+        List<String> type = Arrays.asList("Dodawanie", "Odejmowanie", "Mnożenie", "Dzielenie");
         model.addAttribute("exerciseForm", exerciseForm);
-        model.addAttribute("types", Types.values());
+        model.addAttribute("type", type);
         return "addNewExercise";
     }
 
@@ -113,14 +114,14 @@ public class ExerciseController {
     @ResponseBody
     public String addExerciseSave(Model model, @Valid @ModelAttribute("exerciseForm") Exercise exerciseForm){
 
-
         try{
             String arg1_mS = String.valueOf(exerciseForm.getMantiseArg1());
             String arg1_cS = String.valueOf(exerciseForm.getCellingArg1());
             String arg2_mS = String.valueOf(exerciseForm.getMantiseArg2());
             String arg2_cS =  String.valueOf(exerciseForm.getCellingArg2());
-            Types type = exerciseForm.getType();
+            //String typeS = String.valueOf(exerciseForm.getType());
             Integer p = 10;
+            Types type = Types.ADDITION;
 
             /// zamienilam stringi na typy nie zapomniec zmienic opocz type
 
@@ -179,8 +180,8 @@ public class ExerciseController {
 
                 }
             }else {return "nie sa liczby";}
-        } catch (NullPointerException | NumberFormatException e) {
-            return "pola bie sa wypełnione poprawnie";
+        } catch (NullPointerException e) {
+            return "pola nie sa wypełnione poprawnie";
         }
 
 
