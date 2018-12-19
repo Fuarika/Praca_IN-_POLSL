@@ -11,13 +11,14 @@
 	text-align: center;
 }
 
-#content {
+.content {
 	background-color: #e2e2e2;
 	float: left;
 	padding: 10px;
 	width: 720px;
 	min-height: 620px;
 	margin-top: 0;
+
 }
 
 .nav {
@@ -61,15 +62,103 @@ body {
 	padding: 30px;
 }
 
-#ramka1{
+.ramka1{
 	margin-left: auto;
 	margin-right: auto;
-	width: 140px;
-	height: 40px;
+	width: 100px;
+	height: 50px;
 	padding: 5px;
 	text-align: center;
 	margin-top: 20px;
 }
 .content h1 {
-	font: 24px Gothic L, sans-serif, bold;
+	font: 30px Gothic L, sans-serif, bold;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 3px #252525;
+}
+
+.mantissa
+{
+	position: relative;
+	width: 120px;
+	height: 25px;
+	padding: 5px 5px;
+	background: #24406d;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	margin-left: 235px;
+	margin-top: -30px;
+	color: white;
+}
+
+.mantissa:after
+{
+ 	content: " ";
+	width: 0;
+	height: 0;
+	position: absolute;
+	margin-left: -10px;
+	margin-top: -12px;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 7px solid #24406d;
+
+}
+
+
+.base{
+
+	padding: 5px 5px;
+	background-color: #24406d;
+	width: 60px;
+	height: 25px;
+	margin-left: 380px;
+	margin-top: -33px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	color: white;
+
+}
+.base:after
+{
+	content: " ";
+	width: 0;
+	height: 0;
+	position: absolute;
+	margin-left: -56px;
+	margin-top: -12px;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 7px solid #24406d;
+
+}
+
+.celling {
+	float:left;
+	padding: 5px 5px;
+	background-color: #24406d;
+	width: 100px;
+	height: 25px;
+	margin-left: 423px;
+	margin-top: -80px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	color: white;
+
+}
+.celling:after
+{
+	content: " ";
+	width: 0;
+	height: 0;
+	position: absolute;
+	margin-left: -91px;
+	margin-top: 5px;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	border-right: 7px solid #24406d;
+
 }
