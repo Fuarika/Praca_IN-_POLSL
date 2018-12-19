@@ -20,7 +20,7 @@
             <img src="../img/logo.png" alt="logopolsl" style="width: 131px; padding: 10px;" />
         </div>
         <div style="clear:both;"></div>
-        <div id="content">
+        <div class="content">
             <button id="buttonStartTest" onclick="showTest('formTest')">START TEST</button>
                 <div id="formTest" hidden="true">
                     <div id="clock" style="text-align: center;">01:00</div>

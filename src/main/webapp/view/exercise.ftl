@@ -23,9 +23,10 @@
             <img src="../img/logo.png" alt="logopolsl" style="width: 131px; padding: 10px;" />
         </div>
         <div style="clear:both;"></div>
-        <div id="content">
-            <hr>
+        <div class="content">
+                <hr>
                 <#list exercises as exercise>
+                <div class="exercise">
                     ZADANIE ${exercise.id} : ${exercise.contents} </br>
                         <label>ODPOWIEDZ:</label>
                         <input id="exe_${exercise.id}" type="text" name="answer" size="50" maxlength"25" />
@@ -48,7 +49,8 @@
                                 ${exercise.result.step_4}<br/>
                         </div>
 
-                    <hr>
+                    <hr/>
+                </div>
                 </#list>
         </div>
         <div class="nav">

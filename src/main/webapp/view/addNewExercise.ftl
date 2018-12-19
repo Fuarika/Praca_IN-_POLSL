@@ -27,7 +27,7 @@
         <img src="../img/logo.png" alt="logopolsl" style="width: 131px; padding: 10px;" />
     </div>
     <div style="clear:both;"></div>
-    <div id="content">
+    <div class="content">
         <hr>
 
             <br />
