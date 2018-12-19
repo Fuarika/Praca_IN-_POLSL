@@ -60,7 +60,6 @@
             <li><a href="../theory/theorymulti.html">MNOŻENIE</a></li>
             <li><a href="../theory/theorydiv.html">DZIELENIE</a></li>
             <li><a href="../theory/theorynorm.html">NORMALIZACJA</a></li>
-            <li><a href="../theory/theorydenorm.html">DENORMALIZACJA</a></li>
         </ul>
         <ul>
             <li><a class="active"><h3>ZADANIA</h3></a></li>
