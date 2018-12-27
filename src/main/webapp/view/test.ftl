@@ -21,24 +21,35 @@
         </div>
         <div style="clear:both;"></div>
         <div class="content">
-            <button id="buttonStartTest" onclick="showTest('formTest')">START TEST</button>
+            <hr>
+            <h1>instrukcja</h1>
+            <ul style="list-style-type: none;">
+                <li>1) Test składa się z 5 zadań i trwa 15 minut.</li>
+                <li>2) Poprawnie rozwiązanie zadania daje 1 punkt.</li>
+                <li>3) W przypadku wcześniejszego napisania testu nacisknij przycisk <b>KONIEC</b>.</li>
+                <li>4) Po wciścięciu przycisku <b>START</b> i potwierdzeniu chęci udziału w teście, rozpocznię się odliczanie czasu. </li>
+                <li><p style="color: crimson; text-transform: uppercase; margin-top: -1px;"> <b>Pamiętaj o zapianiu wyniku w formie znormalizowanej !!</b></b></p> </li>
+            </ul>
+            <div style="text-align: center; margin-left -300px; margin-top: 20px;">
+                <button id="buttonStartTest" onclick="showTest('formTest')" ><b>START</b></button>
+            </div>
                 <div id="formTest" hidden="true">
-                    <div id="clock" style="text-align: center;">01:00</div>
+                    <div id="clock" style="text-align: center; margin-top: 20px;">01:00</div>
                     <hr>
                     <#list test as ex>
-                    ZADANIE ${ex.id} : ${ex.contents}
-                    <br />
-                    <label>ODPOWIEDZ:</label>
-                    <input id="exe_${ex.id}" type="text" name="answer" size="50" maxlength"30" />
-                    <br />
-                    <p style="font-size:10px">Odpowiedz zapisz w formacie Mxp^C (ex. 0.20x10^-3)</p>
-                        ${ex.result.answer}
-                    <div id="user_result_${ex?index}" hidden="true">exe_${ex.id}</div>
-                    <div id="ex_result_${ex?index}" hidden="true">${ex.result.answer}</div>
+                        <b>ZADANIE ${ex?counter}</b> : ${ex.contents}
+                        <br />
+                        <label>ODPOWIEDŹ:</label>
+                        <input id="exe_${ex.id}" type="text" name="answer" size="50" maxlength"30" />
+                        <br />
+                        <p style="font-size:10px">Odpowiedź zapisz w formacie Mxp^C (ex. 0.20x10^-3)</p>
+                        <div id="user_result_${ex?index}" hidden="true">exe_${ex.id}</div>
+                        <div id="ex_result_${ex?index}" hidden="true">${ex.result.answer}</div>
                         <hr>
                 </#list>
-                </br>
-                <button id="buttonEndTest" onclick="endTest()">END TEST</button>
+                    <div style="text-align: center; margin-left -300px;">
+                        <button id="buttonEndTest" onclick="endTest()"><b>KONIEC</b></button>
+                    </div>
             </div>
         </div>
         <div class="nav">

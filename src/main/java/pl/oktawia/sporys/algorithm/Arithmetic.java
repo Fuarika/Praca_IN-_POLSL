@@ -3,10 +3,8 @@ package pl.oktawia.sporys.algorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.oktawia.sporys.enums.Types;
-import pl.oktawia.sporys.model.Exercise;
 import pl.oktawia.sporys.model.Result;
 import pl.oktawia.sporys.repository.ResultRepository;
-import pl.oktawia.sporys.service.ResultService;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -21,6 +19,8 @@ public class Arithmetic {
     private Double tmpMx;
     private String solution;
     private boolean minus;
+    private String normalize = "";
+    private String checkExponant;
 
    @Autowired
    ResultRepository resultRepository;
@@ -36,54 +36,55 @@ public class Arithmetic {
     public Result addOrSubFloatingPoint(Types type, Double arg1M, Integer arg1C,
                                         Double arg2M, Integer arg2C, Integer p ) {
 
-        //Double dArg1M = Double.valueOf(arg1M);
-        //Double dArg2M = Double.valueOf(arg2M);
-
+        String solutioMz = "";
         Integer tmpC;
         tmpC = arg1C - arg2C;
 
         if (tmpC == 0) {
-            tmpMx = arg1M; //dArg1M;
-            tmpMy = arg2M; //dArg2M;
+            tmpMx = arg1M;
+            tmpMy = arg2M;
+            checkExponant = "Ponieważ Cx - Cy = 0 <br>&#160;&#160;&#160;&#160;M'x = Mx = " + tmpMx +
+                "<br> &#160;&#160;&#160;&#160;M'y = My = " + tmpMy +"<br>";
         } else if (tmpC > 0) {
             Integer tmp = -absoluteValue(arg1C,arg2C);
-            tmpMx = arg1M; //dArg1M;
-            tmpMy = arg2M*(pow(p,tmp));     //dArg2M;
+            tmpMx = arg1M;
+            tmpMy = arg2M*(pow(p,tmp));
+            checkExponant = "Ponieważ Cx - Cy > 0<br>&#160;&#160;&#160;&#160;M'x = Mx = " + tmpMx +
+                    "<br> &#160;&#160;&#160;&#160;M'y = My x 10^(-|Cx-Cy|) = " + tmpMy +"<br>";
         } else if (tmpC < 0) {
             Integer tmp = -absoluteValue(arg1C,arg2C);
-
-            tmpMx =  arg1M *(pow(p,tmp));     //dArg1M;
-            tmpMy = arg2M; //dArg2M;
+            tmpMx =  arg1M *(pow(p,tmp));
+            tmpMy = arg2M;
+            checkExponant = "Ponieważ Cx - Cy < 0<br>&#160;&#160;&#160;&#160;M'x = Mx x 10^(-|Cx-Cy|) = " + tmpMx +
+                    "<br>&#160;&#160;&#160;&#160;M'y = My = " + tmpMy +"<br>";
         }
 
         if(type.compareTo(Types.ADDITION) == 0){
             Double mZ = tmpMx + tmpMy;
             Integer cZ = max(arg1C,arg2C);
-
-                solution = newTest(mZ,cZ);
+            solutioMz = "Mz = M'x + M'y = " + tmpMx + " + " + tmpMy + " = " + mZ
+                    + "<br>Cz = max(Cx,Cy) = max(" + arg1C + "," + arg2C + ") = " + cZ +"<br>";
+                solution = normalizeSolution(mZ,cZ);
 
 
 
         }else if (type.compareTo(Types.SUBTRATION) == 0){
             Double mZ = tmpMx - tmpMy;
             Integer cZ = max(arg1C,arg2C);
-            solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
-                    + String.valueOf(cZ);
+            solutioMz = "Mz = M'x - M'y = " + tmpMx + " - " + tmpMy + " = " + mZ
+                    + "<br>Cz = max(Cx,Cy) = max(" + arg1C + "," + arg2C + ") = " + cZ +"<br>";
+            solution = normalizeSolution(mZ,cZ);
 
 
         }
 
-
-
-       // String normalized = getMantissaAndExponent(solution);
-
-
         Result result = new Result();
         result.setAnswer(solution);
-        result.setStep_1("z aretmic");
-        result.setStep_2("baka3");
-        result.setStep_3("baka3");
-        result.setStep_4("baka3");
+        result.setStep_1("Mx = " + arg1M + "&#160; &#160;" + "My = " + arg2M + "<br>" +
+            "Cx = " + arg1C + "&#160; &#160;" + "Cy = " + arg2C +"<br>");
+        result.setStep_2(checkExponant);
+        result.setStep_3(solutioMz);
+        result.setStep_4(normalize);
 
         return result;
     }
@@ -91,8 +92,6 @@ public class Arithmetic {
 
     public Result multiplicatonFlatingPoint(Double arg1M, Integer arg1C, Double arg2M, Integer arg2C, Integer p) {
 
-        //Double dArg1M = Double.valueOf(arg1M);
-        //Double dArg2M = Double.valueOf(arg2M);
 
         Double mZ = arg1M * arg2M;
         Integer cZ = arg1C + arg2C;
@@ -128,21 +127,7 @@ public class Arithmetic {
         return result;
     }
 
-    /* public String normalize(String s) {
-        String tmpS = s.substring(1,4);
-        char[] tmpCh = tmpS.toCharArray();
-        Integer count = 0;
-        for(int i = 0; i < tmpCh.length; i++){
-            if (tmpCh[i] == '.') {
-                if (tmpCh[i] == '0') {
-                    count++;
-                }
-            }
-        }
 
-
-        return null;
-    } */
 
     String getMantissaAndExponent(String str) {
         String solution = null;
@@ -197,7 +182,7 @@ public class Arithmetic {
 
     }
 
-    public Float absoluteValueMantissa (Double mantissa){
+   private Float absoluteValueMantissa (Double mantissa){
 
         if (mantissa >= 0) {
             minus = false;
@@ -208,9 +193,7 @@ public class Arithmetic {
         }
     }
 
-    public String newTest (Double mantissa, int exponant) {
-        //Double mantissa = new Double(10.6342d);
-        //Double mantissa2 = new Double(0.0042d);
+    private String normalizeSolution(Double mantissa, int exponant) {
 
         Float mantisa = absoluteValueMantissa(mantissa);
         int integerPart = Integer.valueOf(Float.toString(mantisa).split("\\.")[0]);
@@ -224,23 +207,46 @@ public class Arithmetic {
             double testedFloatNumber = newvalue.round(MathContext.DECIMAL32).doubleValue();
             int newExpo = exp + exponant;
             if (minus == true){
+                if (exp == 0){
+                    normalize = "";
+                } else {
+                    normalize = "Sprawdzenie czy wynik potrzeba znormalizować:<br>Mz = |" + mantissa + "| >= 1<br>trzeba przesunąć o " +
+                        exp + " w prawo <br>Z = " + (-testedFloatNumber) + "x10^" + newExpo;
+                }
                 return -testedFloatNumber + "x10^" + newExpo;
-            }else {return testedFloatNumber + "x10^" + newExpo;}
+            }else {
+                if (exp == 0){
+                    normalize = "";
+                } else {
+                    normalize = "Sprawdzenie czy wynik potrzeba znormalizować:<br>Mz = |" + mantissa + "| >= 1<br>trzeba przesunąć " +
+                        exp + " w prawo <br>Z = " + testedFloatNumber + "x10^" + newExpo;
+                }
+                return testedFloatNumber + "x10^" + newExpo;
+            }
 
-        } else {
-            int decimalLength = Double.toString(mantissa).split("\\.")[1].length();
+        } else if (mantisa < 0.1){
+            int decimalLength = Double.toString(mantisa).split("\\.")[1].length();
             int exp = Integer.toString(decimalPart).length() - decimalLength;
             BigDecimal newvalue = new BigDecimal(mantisa).movePointLeft(exp);
-
-            if (minus == true){
-
-            }
             double testedFloatNumber = newvalue.round(MathContext.DECIMAL32).doubleValue();
             int newExpo = exponant - exp;
-            if (minus == true){
-                return -testedFloatNumber + "x10^" + newExpo;
-            }else {return testedFloatNumber + "x10^" + newExpo;}
 
+            if (minus == true){
+                    normalize = "Sprawdzenie czy wynik potrzeba znormalizować:<br>Mz = |" + mantissa + "| < 0.1<br>trzeba przesunąć o " +
+                            exp + " w lewo <br> Z = " + (-testedFloatNumber) + "x10^" + newExpo;
+
+                return -testedFloatNumber + "x10^" + newExpo;
+            }else {
+
+                    normalize = "Sprawdzenie czy wynik potrzeba znormalizować:<br>Mz = |" + mantissa + "| < 0.1<br>trzeba przesunąć o " +
+                        exp + " w lewo <br>Z = " + testedFloatNumber + "x10^" + newExpo;
+                return testedFloatNumber + "x10^" + newExpo;}
+
+        } else {
+            BigDecimal newvalue = new BigDecimal(mantissa);
+            double testedFloatNumber = newvalue.round(MathContext.DECIMAL32).doubleValue();
+            normalize = "Z = " + mantissa + "x10^" + exponant ;
+            return testedFloatNumber + "x10^" + exponant;
         }
     }
 }

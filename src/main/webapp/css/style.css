@@ -27,6 +27,7 @@
 	width: 240px;
 	padding: 10px;
 	text-align: center;
+	min-height: 800px;
 }
 
 #footer {
@@ -250,4 +251,51 @@ body {
 	border-left: 9px solid transparent;
 	border-right: 9px solid transparent;
 	border-bottom: 8px solid black;
+}
+.cX-cY {
+	float: left;
+	margin-left: 30px;
+}
+.then {
+	float: left;
+	margin-left: 30px;
+	margin-top: 12px;
+}
+
+.mXprim {
+	float: left;
+	margin-left: 50px;
+	margin-top: -2px;
+}
+.mYprim {
+	float: left;
+	margin-left: 100px;
+	margin-top: -3px;
+}
+
+.var{
+	border: black solid 1px;
+	padding: 10px 10px;
+	width: 630px;
+	margin: auto;
+}
+
+#buttonEndTest {
+	width: 500px;
+	height: 40px;
+	background-color: #24406d;
+	color: white;
+}
+#buttonStartTest {
+	width: 500px;
+	height: 40px;
+	background-color: #24406d;
+	color: white;
+}
+
+#clock {
+
+	font-size: 40px;
+	text-shadow: 0px 0px 3px #24406d;
+
 }

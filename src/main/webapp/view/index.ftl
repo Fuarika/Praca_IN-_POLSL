@@ -47,6 +47,10 @@
 
         Działania na liczbach zmiennoprzecinkowych wykonuję się, gdy są to liczby znormalizowane,
         również wyniki podaję się w tej formie.
+        <br>
+        <br>
+        <br>
+        <p style="font-size:12px">Teoria opracowana na postawie książki - B.Pochopień, U.Stańczyk "Arytmetyka systemów cyfrowych w zadaniach"</p>
     </div>
     <div class="nav">
         <ul>
@@ -70,7 +74,7 @@
             <li></li>
         </ul>
     </div>
-    <div id="footer">Teoria opracowana na postawie książki - B.Pochopień, U.Stańczyk "Arytmetyka systemów cyfrowych w zadaniach".
+    <div id="footer">
     </div>
 
 </div>

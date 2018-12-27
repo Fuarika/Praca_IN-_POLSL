@@ -142,10 +142,10 @@ public class ExerciseController {
                     String content;
                     if (type.compareTo(Types.ADDITION) == 0) {
                         content = "Oblicz równanie: X + Y<br/> " +
-                                "gdzie: X = " + arg1_m + " x 10^" + arg1_cS + " " + "Y = " + arg2_mS + " x 10^" + arg2_cS + "<br/>";
+                                "gdzie: X = " + arg1_m + " x 10^" + arg1_cS + "&nbsp;&nbsp;&nbsp;" + "Y = " + arg2_mS + " x 10^" + arg2_cS + "<br/>";
                     } else {
                         content = "Oblicz równanie: X - Y " +
-                                "gdzie: X = " + arg1_mS + " x 10^" + arg1_cS + " " + "Y = " + arg2_mS + " x 10^" + arg2_cS + "<br/>";
+                                "gdzie: X = " + arg1_mS + " x 10^" + arg1_cS + "&nbsp;&nbsp;&nbsp;" + "Y = " + arg2_mS + " x 10^" + arg2_cS + "<br/>";
                     }
 
                     resultService.addResult(result);
@@ -160,7 +160,7 @@ public class ExerciseController {
                             arg2_c, p);
 
                     String content = "Oblicz równanie: X x Y<br/> " +
-                            "gdzie: X = " + arg1_m + " x 10^" + arg1_c + " " + "Y = " + arg2_m + " x 10^" + arg2_c + "<br/>";
+                            "gdzie: X = " + arg1_m + " x 10^" + arg1_c + "       " + "Y = " + arg2_m + " x 10^" + arg2_c + "<br/>";
 
                     resultService.addResult(result);
                     exerciseService.addExercise(type, content, arg1_m, arg1_c,
@@ -172,7 +172,7 @@ public class ExerciseController {
                     Result result = calculate.divisionFlatingPoint(arg1_m, arg1_c,
                             arg2_m, arg2_c, p);
                     String content = "Oblicz równanie: X / Y <br/> " +
-                            "gdzie: X = " + arg1_m + " x 10^" + arg1_c + " " + "Y = " + arg2_m + " x 10^" + arg2_c + "<br/>";
+                            "gdzie: X = " + arg1_m + " x 10^" + arg1_c + "&nbsp;&nbsp;&nbsp;" + "Y = " + arg2_m + " x 10^" + arg2_c + "<br/>";
 
                     resultService.addResult(result);
                     exerciseService.addExercise(type, content, arg1_m, arg1_c,
