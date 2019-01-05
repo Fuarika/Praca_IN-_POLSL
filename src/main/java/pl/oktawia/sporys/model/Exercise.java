@@ -5,6 +5,8 @@ import pl.oktawia.sporys.enums.Types;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -47,21 +49,28 @@ public class Exercise  extends BaseEntity {
 
     @Column(name = "TYPE", nullable = false)
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "Wpisz jeden z rodzajów równań: ADDITION, SUBTRATION, MULTIPLICATION, DIVISION.")
     private Types type;
 
     @Column(name = "CONTENTS", nullable = false)
     private String contents;
 
     @Column(name = "MANTISE_ARG1", nullable = false)
+    @NotNull (message = "Wartość manstsy X nie może być pusta.")
+    @Digits(integer = 1, fraction = 2, message = "Zły format mantysy dla liczby X.")
     private Double mantiseArg1;
 
     @Column(name = "CELLING_ARG1", nullable = false)
+    @NotNull (message = "Wartość cechy X nie może być pusta.")
     private Integer cellingArg1;
 
     @Column(name = "MANTISE_ARG2", nullable = false)
+    @NotNull (message = "Wartość manstsy Y nie może być pusta.")
+    @Digits(integer = 1, fraction = 2 , message = "Zły format mantysy dla liczby Y.")
     private Double mantiseArg2;
 
     @Column(name = "CELLING_ARG2", nullable = false)
+    @NotNull(message = "Wartość cechy Y nie może być pusta.")
     private Integer cellingArg2;
 
     @Column(name = "BASE", nullable = false)

@@ -16,11 +16,15 @@
 
     <div id="container">
         <div class="logo">
-            <b><h1>ARYTMETYKA SYSTEMÓW CYFROWYCH<br />
-                LICZBY ZMIENNOPRZECINKOWE</h1></b>
+            <a href="/" style="text-decoration: none;">
+                <b><h1>ARYTMETYKA SYSTEMÓW CYFROWYCH<br />
+                    LICZBY ZMIENNOPRZECINKOWE</h1></b>
+            </a>
         </div>
         <div id="imglogo" >
-            <img src="../img/logo.png" alt="logopolsl" style="width: 131px; padding: 10px;" />
+            <a href="https://www.polsl.pl/Strony/Witamy.aspx">
+                <img src="../img/logo.png" alt="logopolsl" style="width: 131px; padding: 10px;" />
+            </a>
         </div>
         <div style="clear:both;"></div>
         <div class="content">

@@ -95,35 +95,35 @@ public class Arithmetic {
 
         Double mZ = arg1M * arg2M;
         Integer cZ = arg1C + arg2C;
-        solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
-                + String.valueOf(cZ);
+        solution = normalizeSolution(mZ,cZ);
 
         Result result = new Result();
         result.setAnswer(solution);
-        result.setStep_1("mnoz");
-        result.setStep_2("b");
-        result.setStep_3("c");
-        result.setStep_4("b");
+        result.setStep_1("Mx = " + arg1M + "&#160; &#160;" + "My = " + arg2M + "<br>" +
+                "Cx = " + arg1C + "&#160; &#160;" + "Cy = " + arg2C +"<br>");
+        result.setStep_2("Mz = Mx * My = " + arg1M + " * " + arg2M + " = " + mZ +
+                                     "<br>Cz = " + arg1C + " + " + arg2C + " = " + cZ +"<br>");
+        result.setStep_3(normalize);
+        result.setStep_4(" ");
 
         return result;
     }
 
     public Result divisionFlatingPoint(Double arg1M, Integer arg1C, Double arg2M, Integer arg2C, Integer p) {
 
-        //Double dArg1M = Double.valueOf(arg1M);
-        //Double dArg2M = Double.valueOf(arg2M);
 
         Double mZ = arg1M / arg2M;
         Integer cZ = arg1C - arg2C;
-        solution = String.valueOf(mZ) + "x" + String.valueOf(p) + "^"
-                + String.valueOf(cZ);
+        solution = normalizeSolution(mZ,cZ);
 
         Result result = new Result();
         result.setAnswer(solution);
-        result.setStep_1("dziel");
-        result.setStep_2("b");
-        result.setStep_3("c");
-        result.setStep_4("b");
+        result.setStep_1("Mx = " + arg1M + "&#160; &#160;" + "My = " + arg2M + "<br>" +
+                "Cx = " + arg1C + "&#160; &#160;" + "Cy = " + arg2C +"<br>");
+        result.setStep_2("Mz = Mx * My = " + arg1M + " / " + arg2M + " = " + mZ +
+                "<br>Cz = " + arg1C + " - " + arg2C + " = " + cZ +"<br>");
+        result.setStep_3(normalize);
+        result.setStep_4(" ");
         return result;
     }
 
@@ -211,7 +211,7 @@ public class Arithmetic {
                     normalize = "";
                 } else {
                     normalize = "Sprawdzenie czy wynik potrzeba znormalizować:<br>Mz = |" + mantissa + "| >= 1<br>trzeba przesunąć o " +
-                        exp + " w prawo <br>Z = " + (-testedFloatNumber) + "x10^" + newExpo;
+                        exp + " w lewo <br>Z = " + (-testedFloatNumber) + "x10^" + newExpo;
                 }
                 return -testedFloatNumber + "x10^" + newExpo;
             }else {
@@ -219,27 +219,26 @@ public class Arithmetic {
                     normalize = "";
                 } else {
                     normalize = "Sprawdzenie czy wynik potrzeba znormalizować:<br>Mz = |" + mantissa + "| >= 1<br>trzeba przesunąć " +
-                        exp + " w prawo <br>Z = " + testedFloatNumber + "x10^" + newExpo;
+                        exp + " w lewo <br>Z = " + testedFloatNumber + "x10^" + newExpo;
                 }
                 return testedFloatNumber + "x10^" + newExpo;
             }
 
         } else if (mantisa < 0.1){
-            int decimalLength = Double.toString(mantisa).split("\\.")[1].length();
-            int exp = Integer.toString(decimalPart).length() - decimalLength;
-            BigDecimal newvalue = new BigDecimal(mantisa).movePointLeft(exp);
+            int exp = Integer.toString(decimalPart).length();
+            BigDecimal newvalue = new BigDecimal(mantisa).movePointRight(exp);
             double testedFloatNumber = newvalue.round(MathContext.DECIMAL32).doubleValue();
             int newExpo = exponant - exp;
 
             if (minus == true){
                     normalize = "Sprawdzenie czy wynik potrzeba znormalizować:<br>Mz = |" + mantissa + "| < 0.1<br>trzeba przesunąć o " +
-                            exp + " w lewo <br> Z = " + (-testedFloatNumber) + "x10^" + newExpo;
+                            exp + " w prawo <br> Z = " + (-testedFloatNumber) + "x10^" + newExpo;
 
                 return -testedFloatNumber + "x10^" + newExpo;
             }else {
 
                     normalize = "Sprawdzenie czy wynik potrzeba znormalizować:<br>Mz = |" + mantissa + "| < 0.1<br>trzeba przesunąć o " +
-                        exp + " w lewo <br>Z = " + testedFloatNumber + "x10^" + newExpo;
+                        exp + " w prawo <br>Z = " + testedFloatNumber + "x10^" + newExpo;
                 return testedFloatNumber + "x10^" + newExpo;}
 
         } else {

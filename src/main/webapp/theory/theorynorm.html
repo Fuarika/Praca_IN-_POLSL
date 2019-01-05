@@ -11,23 +11,36 @@
 
 <div id="container">
     <div class="logo">
+        <a href="/" style="text-decoration: none;">
         <b><h1>ARYTMETYKA SYSTEMÓW CYFROWYCH<br />
             LICZBY ZMIENNOPRZECINKOWE</h1></b>
+        </a>
     </div>
     <div id="imglogo" >
-        <img src="../img/logo.png" alt="logopolsl" style="width: 131px; padding: 10px;" />
+        <a href="https://www.polsl.pl/Strony/Witamy.aspx">
+            <img src="../img/logo.png" alt="logopolsl" style="width: 131px; padding: 10px;" />
+        </a>
     </div>
     <div style="clear:both;"></div>
     <div class="content">
         <hr>
         <h1>Normalizacja</h1>
-        <br />
-        Normalizacja polega dosłownie polega na przesunieciu przecinka w mantysie w prawo, którą nazywamy normalizacja prawostronna
-        lub w lewo, wtedy mówi się o normalizacji lewostronnej. Normalizacje najlepiej pokazac na przykładach.
-        <br />
+        Normalizacja polega na przesunieciu przecinka w mantysie w prawo, którą nazywamy normalizacją prawostronną
+        lub w lewo, wtedy mówi się o normalizacji lewostronnej. Ogólny wzór opisujący normalicację:
+        <br>
+        $${p^{-i-1} \le |M'x \pm M'y| < p^{-i}}$$
         <h2>Normalizacja lewostronna</h2>
+        W przypadku kiedy obliczona mantysa jest mniejsza od wartości postawy podniesionej do potęgi <b>-i</b><br>
+        (np. 0,073 <10^(-1)), należy wykonać normalizację mnożąc mantyse o p^i oraz zmniejszyć wartość cechy o i, zatem:
+        $$Cz = max(Cx,Cy) - i$$
         <br />
-        Mamy mantyse w formie M = 0,0733 przesuwamy przecinek w prawo
+        <h2>Normalizacja prawostronna</h2>
+        Natomiast normalizacja prawostronna występuję, gdy obliczona mantysa jest większa od p^(-i-1)<br>
+            (np 1,016 < 1), należy wykonać normalizację mnożąc mantyse o p^(-i) oraz zwiększyć wartość cechy o i, zatem:
+        $$Mz = {(M'x \pm M'y) \cdot p^{-i}}$$
+        $$Cz = max(Cx,Cy) + i$$
+        <br>
+        <br>
         <br>
         <br>
         <br>

@@ -10,24 +10,22 @@
     <link rel="stylesheet" href="../css/style.css" type="text/css" />
     <link rel="stylesheet" href="../css/menu.css" type="text/css" />
     <script type="text/javascript"  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript">
-        function addExercise(){
-
-        }
-    </script>
 </head>
 <body>
-
 <div id="container">
     <div class="logo">
-        <b><h1>ARYTMETYKA SYSTEMÓW CYFROWYCH<br />
-            LICZBY ZMIENNOPRZECINKOWE</h1></b>
+        <a href="/" style="text-decoration: none;">
+            <b><h1>ARYTMETYKA SYSTEMÓW CYFROWYCH<br />
+                LICZBY ZMIENNOPRZECINKOWE</h1></b>
+        </a>
     </div>
     <div id="imglogo" >
-        <img src="../img/logo.png" alt="logopolsl" style="width: 131px; padding: 10px;" />
+        <a href="https://www.polsl.pl/Strony/Witamy.aspx">
+            <img src="../img/logo.png" alt="logopolsl" style="width: 131px; padding: 10px;" />
+        </a>
     </div>
     <div style="clear:both;"></div>
-    <div class="content">
+    <if class="content">
         <hr>
 
             <br />
@@ -45,12 +43,19 @@
                 <p style="font-size:10px"> Y = My o p^Cy</p>
                 Wpisz rodzaj działania:
                 <br />
-                <#-- <@spring.bind "exerciseForm.type"/>
-                <@spring.formSingleSelect "exerciseForm.type" type " " /> -->
+                <@spring.formInput "exerciseForm.type" "" "text" />
                 <br />
             <br />
             <button id="buttonAdd" type="submit" style="width: 200px;">Dodaj</button>
         </form>
+        <#if ("${error}"== "true")>
+        <div class="alert alert-danger">
+            <strong>Błąd!</strong>
+           <#list listErrors as listErrors>
+               ${listErrors}"> </p>
+            </#list>
+        </div>
+    </#if>
     </div>
     <div class="nav">
         <ul>
