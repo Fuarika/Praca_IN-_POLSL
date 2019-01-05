@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import pl.oktawia.sporys.algorithm.Arithmetic;
 import pl.oktawia.sporys.enums.Types;
 import pl.oktawia.sporys.model.Exercise;
@@ -17,9 +15,7 @@ import pl.oktawia.sporys.service.ExerciseService;
 import pl.oktawia.sporys.service.ResultService;
 
 import javax.validation.Valid;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -100,31 +96,22 @@ public class ExerciseController {
         return TEST;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/addNewExercise")
+    @GetMapping( "/addNewExercise")
     public String addExerciseForm(Model model){
-        Exercise exerciseForm = new Exercise();
-        model.addAttribute("exerciseForm", exerciseForm);
-        model.addAttribute("error", "false");
+        model.addAttribute("exerciseForm", new Exercise());
         return ADDNEW;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = {"/addNewExercise"})
-    @ResponseBody
-    public String addExerciseSave(Model model, @Valid @ModelAttribute("exerciseForm") Exercise exerciseForm, BindingResult bResult) {
+    @PostMapping("/addNewExercise")
+    public String addExerciseSave(@Valid Exercise exerciseForm, BindingResult bResult, Model model) {
 
-        model.addAttribute("exerciseForm", exerciseForm);
         if (bResult.hasErrors()) {
-            List<ObjectError> list = bResult.getAllErrors();
-            StringBuilder sb = new StringBuilder();
-            list.forEach(
-                    (t) -> sb.append(t.getDefaultMessage().toString()).append("")
-            );
-            model.addAttribute("error", "true");
-            model.addAttribute("listErrors", sb.toString());
-            return ERROR;
-        } else {
-            model.addAttribute("error", "false");
+            model.addAttribute("errors", true);
+            return "errors";
 
+        }
+
+            model.addAttribute("exerciseForm", exerciseForm);
             try {
                 String arg1_mS = String.valueOf(exerciseForm.getMantiseArg1());
                 String arg1_cS = String.valueOf(exerciseForm.getCellingArg1());
@@ -186,14 +173,16 @@ public class ExerciseController {
                                 arg2_m, arg2_c, p, result);
 
                     }
-                } else {
-                    return "nie sa liczby";
-                }
+
+                } //else {
+                // return "nie sa liczby";
+                // }
             } catch (NullPointerException e) {
                 return "pola nie sa wypełnione poprawnie";
             }
-        }
-            return ERROR;
+
+        model.addAttribute("exerciseForm", exerciseForm);
+            return "added";
 
     }
 

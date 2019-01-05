@@ -1,7 +1,4 @@
 <#import "/spring.ftl" as spring/>
-
-<#assign htmlEscape = true in spring>
-
 <html lang="pl">
 <head>
     <meta charset="utf-8" />
@@ -25,20 +22,16 @@
         </a>
     </div>
     <div style="clear:both;"></div>
-    <if class="content">
+    <div class="content">
         <hr>
-        <div style="text-align: center; margin-left -300px;">
-            <button id="buttonEndTest" onclick="window.location.href='/addNewExercise'"><b>POWRÓT</b></button>
-        </div>
-        <#if ("${error}"== "true")>
-        <div class="alert alert-danger">
-            <strong>Błąd!</strong>
-           <#list listErrors as listErrors>
-               ${listErrors}"> </p>
-           </#list>
-        </div>
-        </#if>
-</div>
+        <p style="color: crimson; text-transform: uppercase; size: 30px; text-align: center;">Podane dane są nie poprawne!!
+        <div style="margin: auto; text-align: center; border: #24406d bold 2px; width: 250px; height: 50px;">
+        <h1 >
+            <a href="/addNewExercise" style="size: 30px; text-decoration: none; color: #24406d;">PONÓW PRÓBĘ</a>
+        </h1>
+    </div>
+
+    </div>
 <div class="nav">
     <ul>
         <li><a class="active"><h3>TEORIA</h3></a></li>
@@ -63,7 +56,6 @@
 </div>
 <div id="footer">
 </div>
-
 </div>
 </body>
 </html>

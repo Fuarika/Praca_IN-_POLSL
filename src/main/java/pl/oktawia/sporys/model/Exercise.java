@@ -1,10 +1,9 @@
 package pl.oktawia.sporys.model;
 
 import lombok.Data;
-import pl.oktawia.sporys.enums.Types;
 
+import pl.oktawia.sporys.enums.Types;
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -56,7 +55,7 @@ public class Exercise  extends BaseEntity {
     private String contents;
 
     @Column(name = "MANTISE_ARG1", nullable = false)
-    @NotNull (message = "Wartość manstsy X nie może być pusta.")
+    @NotNull(message = "Wartość manstsy X nie może być pusta.")
     @Digits(integer = 1, fraction = 2, message = "Zły format mantysy dla liczby X.")
     private Double mantiseArg1;
 
@@ -65,7 +64,7 @@ public class Exercise  extends BaseEntity {
     private Integer cellingArg1;
 
     @Column(name = "MANTISE_ARG2", nullable = false)
-    @NotNull (message = "Wartość manstsy Y nie może być pusta.")
+    @NotNull(message = "Wartość manstsy Y nie może być pusta.")
     @Digits(integer = 1, fraction = 2 , message = "Zły format mantysy dla liczby Y.")
     private Double mantiseArg2;
 

@@ -1,7 +1,4 @@
 <#import "/spring.ftl" as spring/>
-
-<#assign htmlEscape = true in spring>
-
 <html lang="pl">
 <head>
     <meta charset="utf-8" />
@@ -25,37 +22,32 @@
         </a>
     </div>
     <div style="clear:both;"></div>
-    <if class="content">
+    <div class="content">
         <hr>
+            <@spring.bind "exerciseForm"/>
 
-            <br />
-            <form name="exerciseForm" action="addNewExercise" method="POST">
-                X = <@spring.formInput "exerciseForm.mantiseArg1" "" "text" />
-                o 10^
-                <@spring.formInput "exerciseForm.cellingArg1" "" "text" />
+                <form  action="/addNewExercise" method="POST">
+                    X = <@spring.formInput "exerciseForm.mantiseArg1"  />
+                    o 10^
+                    <@spring.formInput "exerciseForm.cellingArg1" />
+                    <br />
+                    <p style="font-size:10px"> X = Mx o p^Cx</p>
+                    Y =
+                    <@spring.formInput "exerciseForm.mantiseArg2" />
+                    o 10^
+                    <@spring.formInput "exerciseForm.cellingArg2" />
+                    <br />
+                    <p style="font-size:10px"> Y = My o p^Cy</p>
+                    Wpisz rodzaj działania:
+                    <br />
+
+                    <@spring.formInput "exerciseForm.type" />
+
+                    <br />
                 <br />
-                <p style="font-size:10px"> X = Mx o p^Cx</p>
-                Y =
-                <@spring.formInput "exerciseForm.mantiseArg2" "" "text" />
-                o 10^
-                <@spring.formInput "exerciseForm.cellingArg2" "" "text" />
-                <br />
-                <p style="font-size:10px"> Y = My o p^Cy</p>
-                Wpisz rodzaj działania:
-                <br />
-                <@spring.formInput "exerciseForm.type" "" "text" />
-                <br />
-            <br />
-            <button id="buttonAdd" type="submit" style="width: 200px;">Dodaj</button>
-        </form>
-        <#if ("${error}"== "true")>
-        <div class="alert alert-danger">
-            <strong>Błąd!</strong>
-           <#list listErrors as listErrors>
-               ${listErrors}"> </p>
-            </#list>
-        </div>
-    </#if>
+                <input type="submit" value="DODAJ" style="width: 200px;">
+            </form>
+        <@spring.showErrors "<br>", "errors"/>
     </div>
     <div class="nav">
         <ul>
