@@ -84,16 +84,6 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.0.12.Final</version>
          </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>RELEASE</version>
-        </dependency>
 
 
     </dependencies>

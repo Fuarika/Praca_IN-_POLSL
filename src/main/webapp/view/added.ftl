@@ -18,7 +18,7 @@
     </div>
     <div id="imglogo" >
         <a href="https://www.polsl.pl/Strony/Witamy.aspx">
-            <img src="/img/logo.png" alt="logopolsl" style="width: 131px; padding: 10px;" />
+            <img src="../img/logo.png" alt="logopolsl" style="width: 131px; padding: 10px;" />
         </a>
     </div>
     <div style="clear:both;"></div>
@@ -65,7 +65,6 @@
     </ul>
 </div>
 <div id="footer">
-
 </div>
 
 </div>

@@ -18,7 +18,7 @@
     </div>
     <div id="imglogo" >
         <a href="https://www.polsl.pl/Strony/Witamy.aspx">
-            <img src="/img/logo.png" alt="logopolsl" style="width: 131px; padding: 10px;" />
+            <img src="../img/logo.png" alt="logopolsl" style="width: 131px; padding: 10px;" />
         </a>
     </div>
     <div style="clear:both;"></div>
@@ -27,9 +27,6 @@
             <@spring.bind "exerciseForm"/>
 
                 <form  action="/addNewExercise" method="POST">
-                    Wprowadź mantyse liczby X i Y w formie znormmalizowanej oraz jako lczbę dziesiętną.
-                    <br>
-                    <br>
                     X = <@spring.formInput "exerciseForm.mantiseArg1"  />
                     o 10^
                     <@spring.formInput "exerciseForm.cellingArg1" />
@@ -41,22 +38,14 @@
                     <@spring.formInput "exerciseForm.cellingArg2" />
                     <br />
                     <p style="font-size:10px"> Y = My o p^Cy</p>
-                    <br>
-                    Wpisz rodzaj działania (ADDITION, SUBTRATION, MULTIPLICATION, DIVISION):
+                    Wpisz rodzaj działania:
                     <br />
+
                     <@spring.formInput "exerciseForm.type" />
-                    <br>
-                    <br>
-                    ADDITION - dodawanie
+
                     <br />
-                    SUBTRATION - odejmowanie
-                    <br />
-                    MULTIPLICATION - mnożenie
-                    <br />
-                    DIVISION - dzielenie
                 <br />
-                    <br>
-                <input id="buttonAdd" type="submit" value="DODAJ" style="margin-left: 90px;">
+                <input type="submit" value="DODAJ" style="width: 200px;">
             </form>
         <@spring.showErrors "<br>", "errors"/>
     </div>
