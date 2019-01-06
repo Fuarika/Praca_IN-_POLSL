@@ -64,9 +64,9 @@ function startTimer(duration, display) {
 }
 
 function startCount() {
-  var fiveMinutes = 60 * 1,
+  var fiftyMinutes = 60 * 15,
     display = document.querySelector('#clock');
-   startTimer(fiveMinutes, display);
+   startTimer(fiftyMinutes, display);
 }
 
 

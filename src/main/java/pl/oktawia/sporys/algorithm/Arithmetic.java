@@ -128,60 +128,6 @@ public class Arithmetic {
     }
 
 
-
-    String getMantissaAndExponent(String str) {
-        String solution = null;
-        try {
-            double testedFloatNumber = Double.parseDouble(str);
-            int expo = Math.getExponent(testedFloatNumber);
-            int numericSystemBase = 10;
-            double mantissa = testedFloatNumber / Math.pow(numericSystemBase,expo);
-            double exponentForFloatingPointNumber = Double.sum(Double.valueOf(String.valueOf(mantissa).split("E")[1]), expo);
-
-            solution =  String.valueOf(mantissa).split("E")[0] + "E" + exponentForFloatingPointNumber;
-            return solution;
-        } catch (NumberFormatException e) {
-            log.error("Cannot parse to double " + str, e);
-        }
-        return solution;
-    }
-
-    public String test1(Double mantissa, Integer exponant) {
-        //double mantissa = 10.6342d;
-        String string = Double.toString(mantissa);
-        String[] stringVal = string.split("\\.");
-
-        if (stringVal[0].length() > 1) {
-            if(stringVal[0].matches("-")){
-                String[] decimal = stringVal[1].split("");
-                String newDecimal = decimal[1];
-                String rest = "";
-                int exp = 0;
-                for (int i =1; i < decimal.length; i++) {
-                    rest += decimal[i];
-                    exp = i;
-                }
-                exponant += exp;
-                String normalizedDown = "-" + newDecimal + "." + rest + stringVal[1] + " x 10 ^" + exponant;
-                return normalizedDown;
-            }else {
-                String[] decimal = stringVal[0].split("");
-                String newDecimal = decimal[0];
-                String rest = "";
-                int exp = 0;
-                for (int i = 1; i < decimal.length; i++) {
-                    rest += decimal[i];
-                    exp = i;
-                }
-                exponant += exp;
-                String normalizedDown = newDecimal + "." + rest + stringVal[1] + " * 10 ^" + exponant;
-                return normalizedDown;
-                //System.out.println(normalizedDown);
-            }
-        } else {return mantissa + "x10^" + exponant;}
-
-    }
-
    private Float absoluteValueMantissa (Double mantissa){
 
         if (mantissa >= 0) {
@@ -193,7 +139,7 @@ public class Arithmetic {
         }
     }
 
-    private String normalizeSolution(Double mantissa, int exponant) {
+    public String normalizeSolution(Double mantissa, int exponant) {
 
         Float mantisa = absoluteValueMantissa(mantissa);
         int integerPart = Integer.valueOf(Float.toString(mantisa).split("\\.")[0]);
