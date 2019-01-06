@@ -299,3 +299,10 @@ body {
 	text-shadow: 0px 0px 3px #24406d;
 
 }
+
+#buttonAdd{
+	width: 500px;
+	height: 40px;
+	background-color: #24406d;
+	color: white;
+}
