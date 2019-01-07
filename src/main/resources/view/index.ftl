@@ -8,7 +8,6 @@
     <script type="text/javascript"  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body>
-
 <div id="container">
     <div class="logo">
         <a href="/" style="text-decoration: none;">
