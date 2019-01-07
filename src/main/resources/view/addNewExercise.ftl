@@ -1,14 +1,14 @@
+<#import "/spring.ftl" as spring/>
 <html lang="pl">
 <head>
     <meta charset="utf-8" />
     <title> ASC -Liczby zmiennoprzecinkowe</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/menu.css" />
+    <link rel="stylesheet" href="../css/style.css" type="text/css" />
+    <link rel="stylesheet" href="../css/menu.css" type="text/css" />
     <script type="text/javascript"  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body>
-
 <div id="container">
     <div class="logo">
         <a href="/" style="text-decoration: none;">
@@ -18,43 +18,36 @@
     </div>
     <div id="imglogo" >
         <a href="https://www.polsl.pl/Strony/Witamy.aspx">
-            <img src="/img/logo.png" alt="logopolsl" style="width: 131px; padding: 10px;" />
+            <img src="../img/logo.png" alt="logopolsl" style="width: 131px; padding: 10px;" />
         </a>
     </div>
     <div style="clear:both;"></div>
     <div class="content">
-        <hr/>
-        <h1>Liczba zmiennoprzecinkowa</h1>
-        Jest sobie liczba zmiennoprzecinkowa, której budowa wygląda nastepująco:
-        <br />
-        <br />
-        $$X = Mx \times p^{Cx}$$
-        <br />
+        <hr>
+            <@spring.bind "exerciseForm"/>
 
-        <div class="mantissa">mantysa liczby X</div>
-        <div class="base">podstawa</div>
-        <div class="celling">cecha liczby</div>
+                <form  action="/addNewExercise" method="POST">
+                    X = <@spring.formInput "exerciseForm.mantiseArg1"  />
+                    o 10^
+                    <@spring.formInput "exerciseForm.cellingArg1" />
+                    <br />
+                    <p style="font-size:10px"> X = Mx o p^Cx</p>
+                    Y =
+                    <@spring.formInput "exerciseForm.mantiseArg2" />
+                    o 10^
+                    <@spring.formInput "exerciseForm.cellingArg2" />
+                    <br />
+                    <p style="font-size:10px"> Y = My o p^Cy</p>
+                    Wpisz rodzaj działania:
+                    <br />
 
-        <div style="clear: both"></div>
+                    <@spring.formInput "exerciseForm.type" />
 
-        <br />
-        Mantysą inaczej nazywam ułamkową część liczby zmiennoprzecinkowej, a cecha to inaczej liczba całkowita.
-        <br /><br />
-        Na liczbach zmiennoprzecinkowych można wykonywać działania, takie jak:
-        <br />
-        <ul>
-            <li>Dodawanie</li>
-            <li>Odejmowanie</li>
-            <li>Mnożenie</li>
-            <li>Dzielenie</li>
-        </ul>
-
-        Działania na liczbach zmiennoprzecinkowych wykonuję się, gdy są to liczby znormalizowane,
-        również wyniki podaję się w tej formie.
-        <br>
-        <br>
-        <br>
-        <p style="font-size:12px">Teoria opracowana na postawie książki - B.Pochopień, U.Stańczyk "Arytmetyka systemów cyfrowych w zadaniach"</p>
+                    <br />
+                <br />
+                <input type="submit" value="DODAJ" style="width: 200px;">
+            </form>
+        <@spring.showErrors "<br>", "errors"/>
     </div>
     <div class="nav">
         <ul>

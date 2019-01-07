@@ -1,0 +1,105 @@
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <title> ASC -Liczby zmiennoprzecinkowe</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <link rel="stylesheet" href="../css/style.css"  />
+  <link rel="stylesheet" href="../css/menu.css"  />
+  <script type="text/javascript"  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+
+  <div id="container">
+    <div class="logo">
+      <a href="/" style="text-decoration: none;">
+        <b><h1>ARYTMETYKA SYSTEMÓW CYFROWYCH<br />
+          LICZBY ZMIENNOPRZECINKOWE</h1></b>
+      </a>
+    </div>
+    <div id="imglogo" >
+      <a href="https://www.polsl.pl/Strony/Witamy.aspx">
+        <img src="../img/logo.png" alt="logopolsl" style="width: 131px; padding: 10px;" />
+      </a>
+    </div>
+    <div style="clear:both;"></div>
+    <div class="content">
+      <hr/>
+      <h1>Dodawanie</h1>
+      Do wykonania działania <u>dodawania</u> na liczbach zmiennoprzecinkowych, potrzebna jest liczba X oraz liczba Y,
+      które wygladają nastepująco:
+      <br/>
+      <div class="xContainer">$${X = Mx \times p^{Cx}}$$</div>
+      <div class="yContainer">$${Y = My \times p^{Cy}}$$</div>
+      <div style="clear:both;"></div>
+      <br />
+      wynikiem jest liczba Z:
+      <br />
+      $$Z = Mz \times p^{Cz}$$
+      <br />
+      Powyższe liczby zostają podstawione do równania na dodawanie:
+      <br />
+      $$Z = X + Y$$
+      $$Z = (Mx' + My') \times p^{max(Cx,Cy)}$$
+      <br />
+      <div class="important"> Zwróć uwagę na kolejność liczb!
+        <div class="exclamation">&#x21</div>
+      </div>
+      <div class="mantiseZ">Mz</div>
+      <div class="exponantZ">Cz</div>
+      <div style="clear:both;"></div>
+      <br />
+      Czym są Mx' i My' ?
+      <br />
+      Mx' i My' są to zmienne zależne od wyniku równania Cx - Cy
+      <br />
+      <br />
+      <div class="var">
+        <div class="when">gdy</div>
+        <div class="cX-cY">$$Cx - Cy = 0$$</div>
+        <div class="then">to</div>
+        <div class="mXprim">$$Mx' = Mx$$</div>
+        <div class="mYprim">$$My' = My$$</div>
+        <div style="clear:both;"></div>
+        <div class="when">gdy</div>
+        <div class="cX-cY">$$Cx - Cy > 0$$</div>
+        <div class="then">to</div>
+        <div class="mXprim">$$Mx' = Mx$$</div>
+        <div class="mYprim">$$My' = My \times p^{-|Cx - Cy|}$$</div>
+        <div style="clear:both;"></div>
+        <div class="wwhen">gdy</div>
+        <div class="cX-cY">$$Cx - Cy < 0$$</div>
+        <div class="then">to</div>
+        <div class="mXprim">$$Mx' = Mx \times p^{-|Cx - Cy|}$$</div>
+        <div class="mYprim">$$My' = My$$</div>
+        <div style="clear:both;"></div>
+      </div>
+      <br>
+      <p style="font-size:12px">Teoria opracowana na postawie książki - B.Pochopień, U.Stańczyk "Arytmetyka systemów cyfrowych w zadaniach"</p>
+    </div>
+    <div class="nav">
+      <ul>
+        <li><a class="active"><h3>TEORIA</h3></a></li>
+        <li><a href=".html">DODAWANIE</a></li>
+        <li><a href="theorysub.html">ODEJMOWANIE</a></li>
+        <li><a href="theorymulti.html">MNOŻENIE</a></li>
+        <li><a href="theorydiv.html">DZIELENIE</a></li>
+        <li><a href="theorynorm.html">NORMALIZACJA</a></li>
+      </ul>
+      <ul>
+        <li><a class="active"><h3>ZADANIA</h3></a></li>
+        <li><a href="/addition">DODAWANIE</a></li>
+        <li><a href="/subtration">ODEJMOWANIE</a></li>
+        <li><a href="/multiplation">MNOŻENIE</a></li>
+        <li><a href="/division">DZIELENIE</a></li>
+      </ul>
+      <ul>
+        <li></li>
+        <li><a class="active" href="/test"><b>T E S T</b></a></li>
+        <li></li>
+      </ul>
+    </div>
+    <div id="footer">
+    </div>
+  </div>
+</body>
+</html>

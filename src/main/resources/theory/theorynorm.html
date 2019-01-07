@@ -12,8 +12,8 @@
 <div id="container">
     <div class="logo">
         <a href="/" style="text-decoration: none;">
-            <b><h1>ARYTMETYKA SYSTEMÓW CYFROWYCH<br />
-                LICZBY ZMIENNOPRZECINKOWE</h1></b>
+        <b><h1>ARYTMETYKA SYSTEMÓW CYFROWYCH<br />
+            LICZBY ZMIENNOPRZECINKOWE</h1></b>
         </a>
     </div>
     <div id="imglogo" >
@@ -24,25 +24,23 @@
     <div style="clear:both;"></div>
     <div class="content">
         <hr>
-        <h1>Mnożenie</h1>
-        Do wykonania działania <u>mnożenia</u> na liczbach zmiennoprzecinkowych, potrzebna jest liczba X oraz liczba Y,
-        które wygladają nastepująco:
-        <br/>
-        <div class="xContainer">$${X = Mx \times p^{Cx}}$$</div>
-        <div class="yContainer">$${Y = My \times p^{Cy}}$$</div>
-        <div style="clear:both;"></div>
+        <h1>Normalizacja</h1>
+        Normalizacja polega na przesunieciu przecinka w mantysie w prawo, którą nazywamy normalizacją prawostronną
+        lub w lewo, wtedy mówi się o normalizacji lewostronnej. Ogólny wzór opisujący normalicację:
+        <br>
+        $${p^{-i-1} \le |M'x \pm M'y| < p^{-i}}$$
+        <h2>Normalizacja lewostronna</h2>
+        W przypadku kiedy obliczona mantysa jest mniejsza od wartości postawy podniesionej do potęgi <b>-i</b><br>
+        (np. 0,073 <10^(-1)), należy wykonać normalizację mnożąc mantyse o p^i oraz zmniejszyć wartość cechy o i, zatem:
+        $$Cz = max(Cx,Cy) - i$$
         <br />
-        wynikiem jest liczba Z:
-        <br />
-        $$Z = Mz \times p^{Cz}$$
-        Powyższe liczby zostają podstawione do równania na mnożenie:
-        <br />
-        $$Z = X \times Y$$
-        $$Z = (Mx \times My) \times p^{(Cx + Cy)}$$
-        <br />
-        <div class="mantiseZ" style="width:70px; margin-left: 300px; margin-top: -25px">Mz</div>
-        <div class="exponantZ" style="width:40px;">Cz</div>
-        <div style="clear:both;"></div>
+        <h2>Normalizacja prawostronna</h2>
+        Natomiast normalizacja prawostronna występuję, gdy obliczona mantysa jest większa od p^(-i-1)<br>
+            (np 1,016 < 1), należy wykonać normalizację mnożąc mantyse o p^(-i) oraz zwiększyć wartość cechy o i, zatem:
+        $$Mz = {(M'x \pm M'y) \cdot p^{-i}}$$
+        $$Cz = max(Cx,Cy) + i$$
+        <br>
+        <br>
         <br>
         <br>
         <br>
@@ -51,11 +49,11 @@
     <div class="nav">
         <ul>
             <li><a class="active"><h3>TEORIA</h3></a></li>
-            <li><a href="../theory/theoryadd.html">DODAWANIE</a></li>
-            <li><a href="../theory/theorysub.html">ODEJMOWANIE</a></li>
-            <li><a href="../theory/theorymulti.html">MNOŻENIE</a></li>
-            <li><a href="../theory/theorydiv.html">DZIELENIE</a></li>
-            <li><a href="../theory/theorynorm.html">NORMALIZACJA</a></li>
+            <li><a href="theoryadd.html">DODAWANIE</a></li>
+            <li><a href="theorysub.html">ODEJMOWANIE</a></li>
+            <li><a href="theorymulti.html">MNOŻENIE</a></li>
+            <li><a href="theorydiv.html">DZIELENIE</a></li>
+            <li><a href="m.html">NORMALIZACJA</a></li>
         </ul>
         <ul>
             <li><a class="active"><h3>ZADANIA</h3></a></li>
