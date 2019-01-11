@@ -1,10 +1,8 @@
 package pl.oktawia.sporys.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.oktawia.sporys.dao.ExerciseDao;
 import pl.oktawia.sporys.enums.Types;
 import pl.oktawia.sporys.model.Exercise;
 import pl.oktawia.sporys.model.Result;
@@ -40,11 +38,6 @@ public class ExerciseServiceImpl implements ExerciseService {
     public Exercise getByCategoryId(Types type) {
         return exerciseRepository.findByType(type)
                 .orElseThrow(()->new IllegalArgumentException("Cant find exercises by type " + type.getName()));
-    }
-
-    @Override
-    public Result getByResultId(Long resultId) {
-        return resultRepository.findById(resultId.longValue());
     }
 
     @Override
